@@ -7,6 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+use Symfony\Component\HttpFoundation\Request;
+
+use MFC\Bundle\RatingsBundle\Entity\Maplet;
+use MFC\Bundle\RatingsBundle\Entity\Person;
+
+use MFC\Bundle\RatingsBundle\Form\PersonType;
+
 class PageController extends Controller
 {
 	/**
@@ -16,6 +23,10 @@ class PageController extends Controller
 	 */
 	public function indexAction()
 	{
-		return array();
+		$em = $this->getDoctrine()->getManager();
+
+		$maplets = $em->getRepository('MFCRatingsBundle:Maplet')->findAll();
+
+		return compact('maplets');
 	}
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Maplet
  *
- * @ORM\Table()
+ * @ORM\Table(name="maplets")
  * @ORM\Entity
  */
 class Maplet

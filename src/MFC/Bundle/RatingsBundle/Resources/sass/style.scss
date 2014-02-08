@@ -30,6 +30,11 @@ THE SOFTWARE.
 	text-transform: uppercase;	
 }
 
+/* BODY STYLING */
+body {
+	padding-bottom: 65px;
+}
+
 /* CONTAINER STYLING */
 .container {
 	width: 90%;
@@ -45,6 +50,9 @@ div.nav {
 		h1 {
 			@include nav-text();
 			font-size: 20pt;
+			a {
+				color: #FFF;
+			}
 		}
 	}
 	.container {
@@ -52,5 +60,13 @@ div.nav {
 			@include nav-text();
 			font-size: 15pt;
 		}
+	}
+}
+
+/* FORM STYLING */
+form {
+	margin-top: 12px;
+	label {
+		font-size: 12pt;
 	}
 }

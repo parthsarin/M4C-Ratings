@@ -16,7 +16,7 @@
     {% block nav %}
     <div class="nav">
         <div class="header">
-            <h1>Maplets for Calculus</h1>
+            <h1><a href="{{ path('page_index') }}">Maplets for Calculus</a></h1>
         </div>
         <div class="container">
             {% block mapletName %}{% endblock %}
@@ -30,8 +30,10 @@
         <div class="main">
             {% block main %}{% endblock %}
         </div>
-        <div class="footer">
-            <p>Copyright &copy; {{ "now"|date("Y") }} by Maplets for Calculus | Programmed and Designed by Parth Sarin</p>
+    </div>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text">Copyright &copy; {{ "now"|date("Y") }} by Maplets for Calculus | Programmed and Designed by Parth Sarin</p>
         </div>
     </div>
 </body>

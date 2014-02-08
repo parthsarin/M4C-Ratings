@@ -1,0 +1,23 @@
+{% extends 'MFCRatingsBundle::layout.html.twig' %}
+
+{% block title %}{{ maplet.name }}{% endblock %}
+
+{% block mapletName %}
+	<h2>Evaluating: {{ maplet.name }}</h2>
+{% endblock %}
+
+{% block main %}
+	{% if role == "student" %}
+		<h4>Do you want to evaluate the following maplet?</h4>
+		<p><center><b>{{ maplet.name }}</b></center></p>
+		<p>You will be asked if you learned from the maplet, if it is useful for tests, and if you have had your test yet. You can also leave comments.</p>
+		<p>Responses will be used to create statistics that may be displayed to other users, but no identifying personal data will be collected or displayed.</p>		
+	{% else %}
+		<h4>Do you want to evaluate the following maplet?</h4>
+		<p><center><b>{{ maplet.name }}</b></center></p>
+		<p>You will be asked how you use the maplet, what you think your students learn, and for your overall opinion of the maplet. You can also leave comments.</p>
+		<p>Responses will be used to create statistics that may be displayed to other users, but no identifying personal data will be collected or displayed.</p>
+	{% endif %}
+	<a href="{{ path('page_index') }}" class="btn btn-default">No, Back to the Main Page</a>
+	<a href="{{ path('page_maplet_3', { 'slug': maplet.slug, 'role': role }) }}" class="btn btn-success">Continue</a>
+{% endblock %}

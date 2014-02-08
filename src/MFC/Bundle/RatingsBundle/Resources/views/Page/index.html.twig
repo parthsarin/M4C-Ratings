@@ -7,5 +7,14 @@
 {% block title %}Home{% endblock %}
 
 {% block main %}
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, necessitatibus, numquam molestias eos assumenda minima magni enim sed asperiores saepe. Praesentium repellat non nostrum delectus libero. Quisquam, aliquid, blanditiis, esse alias optio id distinctio necessitatibus tempora laborum eius tempore asperiores ab veritatis dolorum autem sint velit quasi soluta pariatur ratione. Voluptatum, error, voluptates ratione explicabo reiciendis cum quae ipsam qui ea debitis facilis optio maiores non a nemo consequuntur cumque molestias? Corporis, laudantium perspiciatis quo illum rem dolores ea enim quam consectetur natus magnam temporibus molestiae recusandae impedit aliquam animi quos inventore non debitis quibusdam voluptas facilis tempora sint dignissimos cupiditate eligendi aspernatur nam voluptatem optio earum quidem provident voluptatum libero reprehenderit odio dicta nihil. Ad, delectus, eum, accusantium itaque pariatur esse excepturi amet reiciendis doloremque quidem quis iste nisi. Saepe, accusamus, ullam voluptates tempore reprehenderit quia asperiores veritatis enim autem quidem reiciendis inventore vero id laborum nulla maxime est perferendis minima sed eaque eveniet fuga placeat labore. Eum, molestiae aspernatur consectetur itaque perferendis iusto eveniet est repellendus maxime ab optio quod odit sed deleniti dignissimos minima quibusdam unde assumenda ipsa rerum harum facilis distinctio fuga quidem magnam aliquid necessitatibus temporibus tempora modi recusandae inventore animi laborum alias asperiores cumque.</p>
+	<p>Please select a maplet to rate.</p>
+	<table class="table">
+		{% for group in maplets|batch(3, "") %}
+		    <tr>
+		    	{% for maplet in group %}
+		    	    <td><a href="{{ path('page_maplet_1', { 'slug': maplet.slug }) }}">{{ maplet.name }}</a></td>
+		    	{% endfor %}
+		    </tr>
+		{% endfor %}
+	</table>
 {% endblock %}
