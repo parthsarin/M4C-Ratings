@@ -1,0 +1,10 @@
+{
+  "name": "m4c-rating",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-uglify": "latest"
+  }
+}

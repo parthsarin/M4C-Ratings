@@ -16,6 +16,6 @@ class PageController extends Controller
 	 */
 	public function indexAction()
 	{
-		
+		return array();
 	}
 }
