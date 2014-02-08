@@ -1,13 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %} | M4C Rating</title>
+    {% block css %}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    {% endblock %}
+    {% block js %}
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    {% endblock %}
+</head>
+<body>
+    {% block nav %}
+    {% endblock %}
+    <div class="container">
+        <div class="header">
+            {% block header %}{% endblock %}
+        </div>
+        <div class="main">
+            {% block main %}{% endblock %}
+        </div>
+        <div class="footer">
+            <p>Copyright &copy; {{ "now"|date("Y") }} by Maplets for Calculus | Programmed and Designed by Parth Sarin</p>
+        </div>
+    </div>
+</body>
 </html>
