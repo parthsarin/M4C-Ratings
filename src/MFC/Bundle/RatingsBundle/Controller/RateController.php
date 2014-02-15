@@ -11,8 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 use MFC\Bundle\RatingsBundle\Entity\Maplet;
 use MFC\Bundle\RatingsBundle\Entity\Person;
+use MFC\Bundle\RatingsBundle\Entity\StudentRating;
 
 use MFC\Bundle\RatingsBundle\Form\PersonType;
+use MFC\Bundle\RatingsBundle\Form\StudentRatingType;
 
 class RateController extends Controller
 {
@@ -70,7 +72,7 @@ class RateController extends Controller
 		}	
 		if ($role == "student") {
 			$studentRating = new StudentRating();
-			$form = $this->createStudentRatingForm($studentRating);
+			$form = $this->createStudentRatingForm($studentRating)->createView();
 
 			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
 		} else {
@@ -79,6 +81,24 @@ class RateController extends Controller
 
 			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form'));
 		}
+	}
+
+	/**
+	 * Create a Student Rating form.
+	 *
+	 * @param StudentRating $studentRating "The student rating to create a form for."
+	 * @return Form "The form to render and display"
+	 */
+	public function createStudentRatingForm(StudentRating $studentRating)
+	{
+		$form = $this->createForm(new StudentRatingType(), $studentRating, array(
+			'method' => 'POST',
+			'action' => '#',
+		));
+
+		$form->add('submit', 'submit', array('attr' => array('class' => 'btn btn-default')));
+
+		return $form;
 	}
 
 	/**
