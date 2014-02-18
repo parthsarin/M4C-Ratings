@@ -3,6 +3,7 @@
 namespace MFC\Bundle\RatingsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
  * StudentRating
@@ -217,5 +218,39 @@ class StudentRating
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Validate the entity.
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        $timeTaken = $this->getTimeEval();
+
+        if ($timeTaken == "Before") {
+            // Validate UsefulFuture
+            $usefulFuture = $this->getUsefulFuture();
+            
+            if (rtrim($usefulFuture) == "") {
+                $context->addViolationAt(
+                    'usefulFuture',
+                    'This value cannot be blank.',
+                    array(),
+                    null
+                );
+            }
+        } else {
+            // Validate UsefulPast
+            $usefulPast = $this->getUsefulPast();
+
+            if (rtrim($usefulPast) == "") {
+                $context->addViolationAt(
+                    'usefulPast',
+                    'This value cannot be blank.',
+                    array(),
+                    null
+                );
+            }
+        }
     }
 }

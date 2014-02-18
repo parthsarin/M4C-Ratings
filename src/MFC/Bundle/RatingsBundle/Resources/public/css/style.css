@@ -38,3 +38,5 @@ div.nav .container h2 { color: #FFF; margin: 6px 0; text-align: center; text-tra
 form { margin-top: 12px; }
 form label { font-size: 12pt; }
 form input[type="radio"] { margin-left: 15px; }
+
+.hideNonUseful { display: none; }

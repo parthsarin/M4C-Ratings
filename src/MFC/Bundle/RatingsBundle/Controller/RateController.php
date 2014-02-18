@@ -84,6 +84,27 @@ class RateController extends Controller
 	}
 
 	/**
+	 * @Route("/{slug}/student/4", name="maplet_final_submit")
+	 * @Method("POST")
+	 */
+	public function mapletStudentSubmitAction(Maplet $maplet, Request $request)
+	{
+		$studentRating = new StudentRating();
+		$form = $this->createStudentRatingForm($studentRating);
+
+		$form->handleRequest($request);
+
+		// CHANGE THE FORM'S VALIDATION GROUP BASED ON WHETHER THE STUDENT IS SUBMITTING
+		// BEFORE OR AFTER EXAM.
+		
+		if ($form->isValid()) {
+			
+		}
+
+		return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
+	}
+
+	/**
 	 * Create a Student Rating form.
 	 *
 	 * @param StudentRating $studentRating "The student rating to create a form for."
