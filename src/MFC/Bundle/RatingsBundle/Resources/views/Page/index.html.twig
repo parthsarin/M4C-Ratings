@@ -7,6 +7,12 @@
 {% block title %}Home{% endblock %}
 
 {% block main %}
+	{% for flashMessage in app.session.flashBag.get('notice-success') %}
+	    <div class="alert alert-success alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	    	{{ flashMessage }}
+	    </div>
+	{% endfor %}
 	<p>Please select a maplet to rate.</p>
 	<table class="table">
 		{% for group in maplets|batch(3, "") %}

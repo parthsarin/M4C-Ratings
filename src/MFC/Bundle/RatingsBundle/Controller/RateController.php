@@ -72,6 +72,7 @@ class RateController extends Controller
 		}	
 		if ($role == "student") {
 			$studentRating = new StudentRating();
+			$studentRating->setMaplet($maplet);
 			$form = $this->createStudentRatingForm($studentRating)->createView();
 
 			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
@@ -84,22 +85,28 @@ class RateController extends Controller
 	}
 
 	/**
-	 * @Route("/{slug}/student/4", name="maplet_final_submit")
+	 * @Route("/{slug}/student/4", name="maplet_final_submit_student")
 	 * @Method("POST")
 	 */
 	public function mapletStudentSubmitAction(Maplet $maplet, Request $request)
 	{
 		$studentRating = new StudentRating();
+		$studentRating->setMaplet($maplet);
 		$form = $this->createStudentRatingForm($studentRating);
 
 		$form->handleRequest($request);
 
-		// CHANGE THE FORM'S VALIDATION GROUP BASED ON WHETHER THE STUDENT IS SUBMITTING
-		// BEFORE OR AFTER EXAM.
-		
 		if ($form->isValid()) {
-			
+			$em = $this->getDoctrine()->getManager();
+
+			$em->persist($studentRating);
+			$em->flush();
+
+			$this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
+			return $this->redirect($this->generateUrl('page_index'));
 		}
+
+		$form = $form->createView();
 
 		return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
 	}
@@ -114,7 +121,10 @@ class RateController extends Controller
 	{
 		$form = $this->createForm(new StudentRatingType(), $studentRating, array(
 			'method' => 'POST',
-			'action' => '#',
+			'action' => $this->generateUrl('maplet_final_submit_student', array('slug' => $studentRating->getMaplet()->getSlug())),
+			'attr' => array(
+				'novalidate' => true,
+			),
 		));
 
 		$form->add('submit', 'submit', array('attr' => array('class' => 'btn btn-default')));

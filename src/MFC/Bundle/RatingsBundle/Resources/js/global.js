@@ -7,9 +7,9 @@ $(document).ready(function() {
 		$('div.usefulFuture').slideToggle();
 	});
 
-	if ($('select#mfc_bundle_ratingsbundle_studentrating_timeEval').value() == "Before") {
-		$('div.usefulPast').hide();
-	} else {
-		$('div.usefulFuture').hide();
-	};
+	// if ($('select#mfc_bundle_ratingsbundle_studentrating_timeEval').value() == "Before") {
+	// 	$('div.usefulPast').hide();
+	// } else {
+	// 	$('div.usefulFuture').hide();
+	// };
 });
