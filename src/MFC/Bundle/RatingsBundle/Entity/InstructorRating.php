@@ -11,7 +11,7 @@ use MFC\Bundle\RatingsBundle\Entity\Maplet;
 /**
  * InstructorRating
  *
- * @ORM\Table()
+ * @ORM\Table(name="instructorRatings")
  * @ORM\Entity
  */
 class InstructorRating
@@ -26,30 +26,30 @@ class InstructorRating
     private $id;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="methodUsed", type="string", length=255)
+     * @ORM\Column(name="methodUsed", type="array", nullable=true)
      */
     private $methodUsed;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="methodUsedOther", type="text")
+     * @ORM\Column(name="methodUsedOther", type="text", nullable=true)
      */
     private $methodUsedOther;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="skillsDeveloped", type="string", length=255)
+     * @ORM\Column(name="skillsDeveloped", type="array", nullable=true)
      */
     private $skillsDeveloped;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="skillsDevelopedOther", type="text")
+     * @ORM\Column(name="skillsDevelopedOther", type="text", nullable=true)
      */
     private $skillsDevelopedOther;
 
@@ -57,13 +57,14 @@ class InstructorRating
      * @var string
      *
      * @ORM\Column(name="rating", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $rating;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comments", type="text")
+     * @ORM\Column(name="comments", type="text", nullable=true)
      */
     private $comments;
 
@@ -80,6 +81,13 @@ class InstructorRating
      */
     private $maplet;
 
+    /**
+     * Construct the entity
+     */
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+    }
 
     /**
      * Get id
@@ -273,5 +281,37 @@ class InstructorRating
     public function getMaplet()
     {
         return $this->maplet;
+    }
+
+    /**
+     * Validate the entity
+     *
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        $methodUsed = $this->getMethodUsed();
+        $methodUsedOther = $this->getMethodUsedOther();
+
+        if ((!$methodUsed || empty($methodUsed)) and (!$methodUsedOther || rtrim($methodUsedOther) == "")) {
+            $context->addViolationAt(
+                'methodUsed',
+                'Please fill out either this field, or the next. Both cannot be blank.',
+                array(),
+                null
+            );
+        }
+
+        $skillsDeveloped = $this->getSkillsDeveloped();
+        $skillsDevelopedOther = $this->getSkillsDevelopedOther();
+
+        if ((!$skillsDeveloped || empty($skillsDeveloped) and (!$skillsDevelopedOther || rtrim($skillsDevelopedOther == "")))) {
+            $context->addViolationAt(
+                'skillsDeveloped',
+                'Please fill out either this field, or the next. Both cannot be blank.',
+                array(),
+                null
+            );
+        }
     }
 }

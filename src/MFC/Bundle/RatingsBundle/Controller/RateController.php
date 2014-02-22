@@ -12,9 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use MFC\Bundle\RatingsBundle\Entity\Maplet;
 use MFC\Bundle\RatingsBundle\Entity\Person;
 use MFC\Bundle\RatingsBundle\Entity\StudentRating;
+use MFC\Bundle\RatingsBundle\Entity\InstructorRating;
 
 use MFC\Bundle\RatingsBundle\Form\PersonType;
 use MFC\Bundle\RatingsBundle\Form\StudentRatingType;
+use MFC\Bundle\RatingsBundle\Form\InstructorRatingType;
 
 class RateController extends Controller
 {
@@ -78,7 +80,8 @@ class RateController extends Controller
 			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
 		} else {
 			$instructorRating = new InstructorRating();
-			$form = $this->createInstructorRatingForm($instructorRating);
+			$instructorRating->setMaplet($maplet);
+			$form = $this->createInstructorRatingForm($instructorRating)->createView();
 
 			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form'));
 		}
@@ -112,6 +115,33 @@ class RateController extends Controller
 	}
 
 	/**
+	 * @Route("/{slug}/instructor/4", name="maplet_final_submit_instructor")
+	 * @Method("POST")
+	 * @Template("MFCRatingsBundle:Rate:instructor.html.twig")
+	 */
+	public function mapletInstructorSubmitAction(Maplet $maplet, Request $request)
+	{
+		$instructorRating = new InstructorRating();
+		$instructorRating->setMaplet($maplet);
+		$form = $this->createInstructorRatingForm($instructorRating);
+
+		$form->handleRequest($request);
+
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+
+			$em->persist($instructorRating);
+			$em->flush();
+
+			$this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
+			return $this->redirect($this->generateUrl('page_index'));
+		}
+
+		$form = $form->createView();
+		return compact('maplet', 'form');
+	}
+
+	/**
 	 * Create a Student Rating form.
 	 *
 	 * @param StudentRating $studentRating "The student rating to create a form for."
@@ -122,6 +152,27 @@ class RateController extends Controller
 		$form = $this->createForm(new StudentRatingType(), $studentRating, array(
 			'method' => 'POST',
 			'action' => $this->generateUrl('maplet_final_submit_student', array('slug' => $studentRating->getMaplet()->getSlug())),
+			'attr' => array(
+				'novalidate' => true,
+			),
+		));
+
+		$form->add('submit', 'submit', array('attr' => array('class' => 'btn btn-default')));
+
+		return $form;
+	}
+
+	/**
+	 * Create an Instructor Rating form.
+	 *
+	 * @param InstructorRating $instructorRating "The instructor rating to create a form for."
+	 * @return Form "The form to render and display"
+	 */
+	public function createInstructorRatingForm(InstructorRating $instructorRating)
+	{
+		$form = $this->createForm(new InstructorRatingType(), $instructorRating, array(
+			'method' => 'POST',
+			'action' => $this->generateUrl('maplet_final_submit_instructor', array('slug' => $instructorRating->getMaplet()->getSlug())),
 			'attr' => array(
 				'novalidate' => true,
 			),

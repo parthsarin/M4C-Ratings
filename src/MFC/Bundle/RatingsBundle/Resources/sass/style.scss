@@ -72,6 +72,10 @@ form {
 	input[type="radio"] {
 		margin-left: 15px;
 	}
+	input[type="checkbox"] {
+		margin-left: 15px;
+		margin-right: 2px;
+	}
 	ul {
 		list-style: none;
 		display: flex;
