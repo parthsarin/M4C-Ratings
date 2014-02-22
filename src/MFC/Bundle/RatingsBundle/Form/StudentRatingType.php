@@ -28,7 +28,6 @@ class StudentRatingType extends AbstractType
             ->add('learnt', 'choice', array(
                 'attr' => array(
                     'class' => 'form-control btn-group',
-                    'data-toggle' => 'buttons-radio',
                 ),
                 'multiple' => false,
                 'expanded' => true,

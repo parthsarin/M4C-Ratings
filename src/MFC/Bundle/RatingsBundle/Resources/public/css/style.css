@@ -37,7 +37,7 @@ div.nav .container h2 { color: #FFF; margin: 6px 0; text-align: center; text-tra
 /* FORM STYLING */
 form { margin-top: 12px; }
 form label { font-size: 12pt; }
-form input[type="radio"] { margin-left: 15px; }
+form input[type="radio"] { margin-left: 15px; margin-right: 2px; }
 form input[type="checkbox"] { margin-left: 15px; margin-right: 2px; }
 form ul { list-style: none; display: flex; flex-direction: row-reverse; }
 form ul li { color: red; }
