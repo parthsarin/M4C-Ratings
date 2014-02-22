@@ -2,6 +2,22 @@
 
 {% block title %}{{ maplet.name }}{% endblock %}
 
+{% block js %}
+{{ parent() }}
+<script>
+$(document).ready(function() {
+	var studentTeacher = $('select#mfc_bundle_ratingsbundle_studentrating_timeEval').val()
+	if (studentTeacher == "before") {
+		$('.usefulFuture').show();
+		$('.usefulPast').hide();
+	} else {
+		$('.usefulFuture').hide();
+		$('.usefulPast').show();
+	}
+});
+</script>
+{% endblock %}
+
 {% block mapletName %}
 	<h2>Evaluating: {{ maplet.name }}</h2>
 {% endblock %}

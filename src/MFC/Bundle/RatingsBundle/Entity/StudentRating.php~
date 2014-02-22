@@ -233,16 +233,18 @@ class StudentRating
 
     /**
      * Validate the entity.
+     *
+     * @Assert\Callback
      */
     public function validate(ExecutionContextInterface $context)
     {
         $timeTaken = $this->getTimeEval();
 
-        if ($timeTaken == "Before") {
+        if ($timeTaken == "before") {
             // Validate UsefulFuture
             $usefulFuture = $this->getUsefulFuture();
 
-            if (rtrim($usefulFuture) == "") {
+            if (!$usefulFuture || rtrim($usefulFuture) == "") {
                 $context->addViolationAt(
                     'usefulFuture',
                     'This value cannot be blank.',
@@ -254,7 +256,7 @@ class StudentRating
             // Validate UsefulPast
             $usefulPast = $this->getUsefulPast();
 
-            if (rtrim($usefulPast) == "") {
+            if (!$usefulPast || rtrim($usefulPast) == "") {
                 $context->addViolationAt(
                     'usefulPast',
                     'This value cannot be blank.',

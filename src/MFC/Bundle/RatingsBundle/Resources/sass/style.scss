@@ -72,6 +72,15 @@ form {
 	input[type="radio"] {
 		margin-left: 15px;
 	}
+	ul {
+		list-style: none;
+		display: flex;
+		flex-direction: row-reverse;
+		li {
+			// float: right;
+			color: red;
+		}
+	}
 }
 
 .hideNonUseful {
