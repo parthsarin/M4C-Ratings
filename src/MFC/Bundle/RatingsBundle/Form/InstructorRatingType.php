@@ -26,13 +26,13 @@ class InstructorRatingType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                 ),
-                'label' => 'How are you using this maplet in your class? (Check 0, 1, 2, or 3.)'
+                'label' => '1. How are you using this maplet in your class? (Check 0, 1, 2, or 3.)'
             ))
             ->add('methodUsedOther', 'text', array(
                 'attr' => array(
                     'class' => 'form-control',
                 ),
-                'label' => 'Please mention any other method you are using this maplet in your class.'
+                'label' => 'Other'
             ))
             ->add('skillsDeveloped', 'choice', array(
                 'choices' => array(
@@ -45,13 +45,13 @@ class InstructorRatingType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                 ),
-                'label' => 'What skills does this maplet help develop? (Check 0, 1, 2, or 3.)'
+                'label' => '2. What skills does this maplet help develop? (Check 0, 1, 2, or 3.)'
             ))
             ->add('skillsDevelopedOther', 'text', array(
                 'attr' => array(
                     'class' => 'form-control',
                 ),
-                'label' => 'Please mention any other skills this maplet helps develop.'
+                'label' => 'Other'
             ))
             ->add('rating', 'choice', array(
                 'attr' => array(
@@ -66,7 +66,7 @@ class InstructorRatingType extends AbstractType
                     '4' => '****',
                     '5' => '*****',
                 ),
-                'label' => 'Please rate the overall value of this maplet. (* = very poor, ***** = very good)'
+                'label' => '3. Please rate the overall value of this maplet. (* = very poor, ***** = very good)'
             ))
             ->add('comments', 'textarea', array(
                 'attr' => array(
