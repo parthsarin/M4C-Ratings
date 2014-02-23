@@ -91,3 +91,20 @@ form {
 .hideNonUseful {
 	display: none;
 }
+
+/* BOOTSTRAP STYLING (EXTENSION) */
+.btn-pink {
+  color: #ffffff;
+  background-color: #F205D3;
+  border-color: #F531DB;
+}
+
+.btn-pink:hover,
+.btn-pink:focus,
+.btn-pink:active,
+.btn-pink.active,
+.open .dropdown-toggle.btn-pink {
+  color: #ffffff;
+  background-color: #CC04B1;
+  border-color: #CC29B6;
+}

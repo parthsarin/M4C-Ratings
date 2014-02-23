@@ -18,6 +18,6 @@
 		<p>You will be asked how you use the maplet, what you think your students learn, and for your overall opinion of the maplet. You can also leave comments.</p>
 		<p>Responses will be used to create statistics that may be displayed to other users, but no identifying personal data will be collected or displayed.</p>
 	{% endif %}
-	<a href="{{ path('page_index') }}" class="btn btn-default">No, Back to the Main Page</a>
 	<a href="{{ path('page_maplet_3', { 'slug': maplet.slug, 'role': role }) }}" class="btn btn-success">Continue</a>
+	<a href="{{ path('page_index') }}" class="btn btn-default btn-pink">No, Back to the Main Page</a>
 {% endblock %}
