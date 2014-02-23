@@ -24,7 +24,6 @@ class InstructorRatingType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => array(
-                    'class' => 'form-control',
                 ),
                 'label' => '1. How are you using this maplet in your class? (Check 0, 1, 2, or 3.)'
             ))
@@ -43,7 +42,6 @@ class InstructorRatingType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => array(
-                    'class' => 'form-control',
                 ),
                 'label' => '2. What skills does this maplet help develop? (Check 0, 1, 2, or 3.)'
             ))

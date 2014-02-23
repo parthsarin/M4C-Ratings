@@ -42,6 +42,8 @@ form input[type="checkbox"] { margin-left: 15px; margin-right: 2px; }
 form ul { list-style: none; display: flex; flex-direction: row-reverse; }
 form ul li { color: red; }
 
+.form-custom-group { border: 1px solid #ccc; border-radius: 4px; margin: 8px 0; padding: 8px; }
+
 .hideNonUseful { display: none; }
 
 /* BOOTSTRAP STYLING (EXTENSION) */
