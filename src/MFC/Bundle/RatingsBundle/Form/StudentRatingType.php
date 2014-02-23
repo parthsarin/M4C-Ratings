@@ -23,7 +23,7 @@ class StudentRatingType extends AbstractType
                     'before' => 'Before my quiz or exam.',
                     'after' => 'After my quiz or exam.',
                 ),
-                'label' => 'When are you evaluating?'
+                'label' => '1. When are you evaluating?'
             ))
             ->add('learnt', 'choice', array(
                 'attr' => array(
@@ -38,7 +38,7 @@ class StudentRatingType extends AbstractType
                     '4' => '****',
                     '5' => '*****',
                 ),
-                'label' => 'How much did you learn from this maplet?',
+                'label' => '2. How much did you learn from this maplet?',
             ))
             ->add('usefulPast', 'choice', array(
                 'attr' => array(
@@ -53,7 +53,7 @@ class StudentRatingType extends AbstractType
                     '4' => '****',
                     '5' => '*****',
                 ),
-                'label' => 'How useful do you think this maplet was on your test?',
+                'label' => '3. How useful do you think this maplet was on your test?',
             ))
             ->add('usefulFuture', 'choice', array(
                 'attr' => array(
@@ -68,7 +68,7 @@ class StudentRatingType extends AbstractType
                     '4' => '****',
                     '5' => '*****',
                 ),
-                'label' => 'How useful do you think this maplet will be on your test?',
+                'label' => '3. How useful do you think this maplet will be on your test?',
             ))
             ->add('comments', 'textarea', array(
                 'attr' => array(
