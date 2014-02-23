@@ -1,0 +1,40 @@
+{% extends 'MFCRatingsBundle::layout.html.twig' %}
+
+{% block header %}
+<h2>Thanks for rating a maplet.</h2>
+{% endblock %}
+
+{% block title %}Thanks{% endblock %}
+
+{% block css %}
+{{ parent() }}
+<style>
+div.thanks {
+	display: none;
+}
+</style>
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script>
+$(document).ready(function() {
+	$('#dismissButton').click(function() {
+		$('.showFirst').slideUp();
+		$('.thanks').slideDown();
+	});
+});
+</script>
+{% endblock %}
+
+{% block main %}
+	<div class="showFirst">
+		<p>Thank you for rating that maplet. The rating was successfully submitted!</p>
+		<a href="#" id="dismissButton" class="btn btn-pink">Click to dismiss</a>
+		<span>or</span>
+		<a href="{{ path('page_index') }}" class="btn btn-success">Rate Another Maplet</a>
+	</div>
+	<div class="thanks">
+		<p>Thank you.</p>
+	</div>
+{% endblock %}
