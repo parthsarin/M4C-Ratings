@@ -20,8 +20,8 @@ class StudentRatingType extends AbstractType
                     'class' => 'form-control'
                 ),
                 'choices' => array(
-                    'before' => 'Before',
-                    'after' => 'After',
+                    'before' => 'Before my quiz or exam.',
+                    'after' => 'After my quiz or exam.',
                 ),
                 'label' => 'When are you evaluating?'
             ))
