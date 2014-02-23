@@ -57,7 +57,9 @@ class InstructorRating
      * @var string
      *
      * @ORM\Column(name="rating", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="You must answer this question."
+     * )
      */
     private $rating;
 
@@ -296,7 +298,7 @@ class InstructorRating
         if ((!$methodUsed || empty($methodUsed)) and (!$methodUsedOther || rtrim($methodUsedOther) == "")) {
             $context->addViolationAt(
                 'methodUsed',
-                'Please fill out either this field, or the next. Both cannot be blank.',
+                'You must answer this question.',
                 array(),
                 null
             );
@@ -308,7 +310,7 @@ class InstructorRating
         if ((!$skillsDeveloped || empty($skillsDeveloped) and (!$skillsDevelopedOther || rtrim($skillsDevelopedOther == "")))) {
             $context->addViolationAt(
                 'skillsDeveloped',
-                'Please fill out either this field, or the next. Both cannot be blank.',
+                'You must answer this question.',
                 array(),
                 null
             );
