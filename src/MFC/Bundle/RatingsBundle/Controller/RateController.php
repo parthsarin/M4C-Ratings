@@ -157,7 +157,7 @@ class RateController extends Controller
 			),
 		));
 
-		$form->add('submit', 'submit', array('attr' => array('class' => 'btn btn-default')));
+		$form->add('submit', 'submit', array('attr' => array('class' => 'btn btn-default btn-success')));
 
 		return $form;
 	}
@@ -178,7 +178,7 @@ class RateController extends Controller
 			),
 		));
 
-		$form->add('submit', 'submit', array('attr' => array('class' => 'btn btn-default')));
+		$form->add('submit', 'submit', array('attr' => array('class' => 'btn btn-default btn-success')));
 
 		return $form;
 	}
