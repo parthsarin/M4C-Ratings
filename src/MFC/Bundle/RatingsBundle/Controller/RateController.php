@@ -105,8 +105,8 @@ class RateController extends Controller
 			$em->persist($studentRating);
 			$em->flush();
 
-			$this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
-			return $this->redirect($this->generateUrl('page_index'));
+			// $this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
+			return $this->redirect($this->generateUrl('page_thanks'));
 		}
 
 		$form = $form->createView();
@@ -133,8 +133,8 @@ class RateController extends Controller
 			$em->persist($instructorRating);
 			$em->flush();
 
-			$this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
-			return $this->redirect($this->generateUrl('page_index'));
+			// $this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
+			return $this->redirect($this->generateUrl('page_thanks'));
 		}
 
 		$form = $form->createView();

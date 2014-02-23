@@ -29,4 +29,14 @@ class PageController extends Controller
 
 		return compact('maplets');
 	}
+
+	/**
+	 * @Route("/thanks", name="page_thanks")
+	 * @Method("GET")
+	 * @Template
+	 */
+	public function thanksAction()
+	{
+		return array();
+	}
 }
