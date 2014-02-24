@@ -86,6 +86,12 @@ form {
 			color: red;
 		}
 	}
+
+	input[type="checkbox"] + label {
+		background-color: #d95ce6;
+		
+	}
+
 }
 
 .form-custom-group {
