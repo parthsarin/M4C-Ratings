@@ -6,15 +6,6 @@
 	<h2>Evaluating: {{ maplet.name }}</h2>
 {% endblock %}
 
-{% form_theme form _self %}
-{% block form_row %}
-	<div class="form-group">
-		{{ form_label(form) }}
-		{{ form_errors(form) }}
-		{{ form_widget(form) }}
-	</div>
-{% endblock %}
-
 {% block main %}
 	{{ form_start(form) }}
 		<div class="form-custom-group">
