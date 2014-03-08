@@ -6,17 +6,100 @@
 	<h2>Evaluating: {{ maplet.name }}</h2>
 {% endblock %}
 
+{% form_theme form _self %}
+{% block form_row %}
+	<div class="form-group">
+        {% if form.vars.block_prefixes.1 not in ['radio', 'checkbox'] %}
+            {{ form_label(form) }}
+        {% endif %}
+		{{ form_errors(form) }}
+		{{ form_widget(form) }}
+	</div>
+{% endblock %}
+
+{% block radio_widget %}
+{% spaceless %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    {% if inline is defined and inline is sameas(true) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' radio-inline')|trim}) %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            {% if label is not sameas(false) %}
+                {{ label|trans({}, translation_domain) }}
+            {% endif %}
+        </label>
+    {% else %}
+        <div class="radio">
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+                {% if label is not sameas(false) %}
+                    {{ label|trans({}, translation_domain) }}
+                {% endif %}
+            </label>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock radio_widget %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    {% if inline is defined and inline is sameas(true) %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' checkbox-inline')|trim}) %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            {% if label is not sameas(false) %}
+                {{ label|trans({}, translation_domain) }}
+            {% endif %}
+        </label>
+    {% else %}
+        <div class="checkbox">
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+                {% if label is not sameas(false) %}
+                    {{ label|trans({}, translation_domain) }}
+                {% endif %}
+            </label>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+
+{% block choice_widget_expanded %}
+{% spaceless %}
+    {% if inline is not defined %}{% set inline = false %}{% endif %}
+    <div {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {{ form_widget(child, {'inline': inline}) }}
+    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock %}
+
 {% block main %}
 	{{ form_start(form) }}
 		<div class="form-custom-group">
-			{{ form_row(form.methodUsed) }}
+			{{ form_row(form.methodUsed, {'inline': true}) }}
 			{{ form_row(form.methodUsedOther) }}
 		</div>
 		<div class="form-custom-group">
-			{{ form_row(form.skillsDeveloped) }}
+			{{ form_row(form.skillsDeveloped, {'inline': true}) }}
 			{{ form_row(form.skillsDevelopedOther) }}
 		</div>
-		{{ form_row(form.rating) }}
+		<div class="radio-rating-widget">{{ form_row(form.rating, {'inline': true}) }}</div>
 		{{ form_row(form.comments) }}
 		{{ form_row(form.submit) }}
 	{{ form_end(form) }}
