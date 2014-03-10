@@ -17,6 +17,15 @@
 	</div>
 {% endblock %}
 
+{% block form_label %}
+{% spaceless %}
+  {% if label is empty %}
+  {% else %}
+    <label>{% autoescape false %}{{ label|trans }}{% endautoescape %}</label>
+  {% endif %}
+{% endspaceless %}
+{% endblock %}
+
 {% block radio_widget %}
 {% spaceless %}
     {% if required %}
@@ -31,7 +40,7 @@
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
             {% if label is not sameas(false) %}
-                {{ label|trans({}, translation_domain) }}
+                <span class="inlineLabel">{{ label|trans({}, translation_domain)|raw }}</span>
             {% endif %}
         </label>
     {% else %}
@@ -39,7 +48,7 @@
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
                 <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
                 {% if label is not sameas(false) %}
-                    {{ label|trans({}, translation_domain) }}
+                    <span class="inlineLabel">{{ label|trans({}, translation_domain)|raw }}</span>
                 {% endif %}
             </label>
         </div>
@@ -91,13 +100,19 @@
 
 {% block main %}
 	{{ form_start(form) }}
-		<div class="form-custom-group">
+		<div class="form-custom-group clearfix">
 			{{ form_row(form.methodUsed, {'inline': true}) }}
-			{{ form_row(form.methodUsedOther) }}
+            <div class="other-sameline">
+                {{ form_row(form.methodUsedOtherCheck, {'inline': true}) }}
+    			{{ form_row(form.methodUsedOther) }}
+            </div>
 		</div>
-		<div class="form-custom-group">
+		<div class="form-custom-group clearfix">
 			{{ form_row(form.skillsDeveloped, {'inline': true}) }}
-			{{ form_row(form.skillsDevelopedOther) }}
+            <div class="other-sameline">
+                {{ form_row(form.skillsDevelopedOtherCheck, {'inline': true}) }}
+			    {{ form_row(form.skillsDevelopedOther) }}
+            </div>
 		</div>
 		<div class="radio-rating-widget">{{ form_row(form.rating, {'inline': true}) }}</div>
 		{{ form_row(form.comments) }}
