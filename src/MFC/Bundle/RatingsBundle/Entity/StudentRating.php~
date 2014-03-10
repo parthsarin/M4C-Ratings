@@ -29,7 +29,9 @@ class StudentRating
      * @var string
      *
      * @ORM\Column(name="timeEval", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="You must answer this question."
+     * )
      */
     private $timeEval;
 
@@ -37,7 +39,9 @@ class StudentRating
      * @var string
      *
      * @ORM\Column(name="learnt", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="You must answer this question."
+     * )
      */
     private $learnt;
 
@@ -58,7 +62,7 @@ class StudentRating
     /**
      * @var string
      *
-     * @ORM\Column(name="comments", type="text")
+     * @ORM\Column(name="comments", type="text", nullable=true)
      */
     private $comments;
 
@@ -247,7 +251,7 @@ class StudentRating
             if (!$usefulFuture || rtrim($usefulFuture) == "") {
                 $context->addViolationAt(
                     'usefulFuture',
-                    'This value cannot be blank.',
+                    'You must answer this question.',
                     array(),
                     null
                 );
@@ -259,7 +263,7 @@ class StudentRating
             if (!$usefulPast || rtrim($usefulPast) == "") {
                 $context->addViolationAt(
                     'usefulPast',
-                    'This value cannot be blank.',
+                    'You must answer this question.',
                     array(),
                     null
                 );
