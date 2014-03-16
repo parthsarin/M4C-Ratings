@@ -32,13 +32,13 @@ class StudentRatingType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'choices' => array(
-                    '1' => '*',
-                    '2' => '**',
-                    '3' => '***',
-                    '4' => '****',
-                    '5' => '*****',
+                    '1' => '<i class="fa fa-star"></i>',
+                    '2' => '<i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '3' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '4' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '5' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                 ),
-                'label' => '2. How much did you learn from this maplet? (* = very little, ***** = a lot)',
+                'label' => '2. How much did you learn from this maplet? (<i class="fa fa-star"></i> = very little, <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> = a lot)',
             ))
             ->add('usefulPast', 'choice', array(
                 'attr' => array(
@@ -47,13 +47,13 @@ class StudentRatingType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'choices' => array(
-                    '1' => '*',
-                    '2' => '**',
-                    '3' => '***',
-                    '4' => '****',
-                    '5' => '*****',
+                    '1' => '<i class="fa fa-star"></i>',
+                    '2' => '<i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '3' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '4' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '5' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                 ),
-                'label' => '3. How useful do you think this maplet was on your test? (* = very little, ***** = a lot)',
+                'label' => '3. How useful do you think this maplet was on your test? (<i class="fa fa-star"></i> = very little, <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> = a lot)',
             ))
             ->add('usefulFuture', 'choice', array(
                 'attr' => array(
@@ -62,15 +62,16 @@ class StudentRatingType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'choices' => array(
-                    '1' => '*',
-                    '2' => '**',
-                    '3' => '***',
-                    '4' => '****',
-                    '5' => '*****',
+                    '1' => '<i class="fa fa-star"></i>',
+                    '2' => '<i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '3' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '4' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '5' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                 ),
-                'label' => '3. How useful do you think this maplet will be on your test? (* = very little, ***** = a lot)',
+                'label' => '3. How useful do you think this maplet will be on your test? (<i class="fa fa-star"></i> = very little, <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> = a lot)',
             ))
             ->add('comments', 'textarea', array(
+                'label' => 'Additional Comments:',
                 'attr' => array(
                     'class' => 'form-control',
                 )

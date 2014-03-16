@@ -27,11 +27,14 @@ class InstructorRatingType extends AbstractType
                 ),
                 'label' => '1. How are you using this maplet in your class? (Check 0, 1, 2, or 3.)'
             ))
+            ->add('methodUsedOtherCheck', 'checkbox', array(
+                'label' => 'Other',
+                'value' => 'methodUsedOtherCheck',
+            ))
             ->add('methodUsedOther', 'text', array(
                 'attr' => array(
                     'class' => 'form-control',
                 ),
-                'label' => 'Other'
             ))
             ->add('skillsDeveloped', 'choice', array(
                 'choices' => array(
@@ -45,11 +48,14 @@ class InstructorRatingType extends AbstractType
                 ),
                 'label' => '2. What skills does this maplet help develop? (Check 0, 1, 2, or 3.)'
             ))
+            ->add('skillsDevelopedOtherCheck', 'checkbox', array(
+                'label' => 'Other',
+                'value' => 'skillsDevelopedOtherCheck',
+            ))
             ->add('skillsDevelopedOther', 'text', array(
                 'attr' => array(
                     'class' => 'form-control',
                 ),
-                'label' => 'Other'
             ))
             ->add('rating', 'choice', array(
                 'attr' => array(
@@ -58,13 +64,13 @@ class InstructorRatingType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'choices' => array(
-                    '1' => '*',
-                    '2' => '**',
-                    '3' => '***',
-                    '4' => '****',
-                    '5' => '*****',
+                    '1' => '<i class="fa fa-star"></i>',
+                    '2' => '<i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '3' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '4' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
+                    '5' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                 ),
-                'label' => '3. Please rate the overall value of this maplet. (* = very poor, ***** = very good)'
+                'label' => '3. Please rate the overall value of this maplet. (<i class="fa fa-star"></i> = very poor, <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> = very good)'
             ))
             ->add('comments', 'textarea', array(
                 'attr' => array(

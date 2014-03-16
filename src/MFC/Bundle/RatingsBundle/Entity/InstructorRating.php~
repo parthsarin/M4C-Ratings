@@ -11,7 +11,7 @@ use MFC\Bundle\RatingsBundle\Entity\Maplet;
 /**
  * InstructorRating
  *
- * @ORM\Table()
+ * @ORM\Table(name="instructorRatings")
  * @ORM\Entity
  */
 class InstructorRating
@@ -35,6 +35,13 @@ class InstructorRating
     /**
      * @var string
      *
+     * @ORM\Column(name="methodUsedOtherCheck", type="string", length=255)
+     */
+    private $methodUsedOtherCheck;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="methodUsedOther", type="text", nullable=true)
      */
     private $methodUsedOther;
@@ -49,6 +56,13 @@ class InstructorRating
     /**
      * @var string
      *
+     * @ORM\Column(name="skillsDevelopedOtherCheck", type="string", length=255)
+     */
+    private $skillsDevelopedOtherCheck;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="skillsDevelopedOther", type="text", nullable=true)
      */
     private $skillsDevelopedOther;
@@ -57,14 +71,16 @@ class InstructorRating
      * @var string
      *
      * @ORM\Column(name="rating", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="You must answer this question."
+     * )
      */
     private $rating;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comments", type="text")
+     * @ORM\Column(name="comments", type="text", nullable=true)
      */
     private $comments;
 
@@ -292,5 +308,50 @@ class InstructorRating
     {
         $methodUsed = $this->getMethodUsed();
         $methodUsedOther = $this->getMethodUsedOther();
+        $methodUsedOtherCheck = $this->getMethodUsedOtherCheck();
+
+        if ((!$methodUsed || empty($methodUsed)) and !($methodUsedOtherCheck and !(!$methodUsedOther || rtrim($methodUsedOther) == ""))) {
+            $context->addViolationAt(
+                'methodUsed',
+                'You must answer this question.',
+                array(),
+                null
+            );
+        }
+
+        $skillsDeveloped = $this->getSkillsDeveloped();
+        $skillsDevelopedOther = $this->getSkillsDevelopedOther();
+
+        if ((!$skillsDeveloped || empty($skillsDeveloped) and (!$skillsDevelopedOther || rtrim($skillsDevelopedOther == "")))) {
+            $context->addViolationAt(
+                'skillsDeveloped',
+                'You must answer this question.',
+                array(),
+                null
+            );
+        }
+    }
+
+    /**
+     * Set methodUsedOtherCheck
+     *
+     * @param string $methodUsedOtherCheck
+     * @return InstructorRating
+     */
+    public function setMethodUsedOtherCheck($methodUsedOtherCheck)
+    {
+        $this->methodUsedOtherCheck = $methodUsedOtherCheck;
+
+        return $this;
+    }
+
+    /**
+     * Get methodUsedOtherCheck
+     *
+     * @return string 
+     */
+    public function getMethodUsedOtherCheck()
+    {
+        return $this->methodUsedOtherCheck;
     }
 }

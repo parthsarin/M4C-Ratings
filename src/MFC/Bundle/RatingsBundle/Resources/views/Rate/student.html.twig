@@ -33,6 +33,12 @@ $(document).ready(function() {
 	</div>
 {% endblock %}
 
+{% block form_label %}
+{% spaceless %}
+  <label>{% autoescape false %}{{ label|trans }}{% endautoescape %}</label>
+{% endspaceless %}
+{% endblock %}
+
 {% block radio_widget %}
 {% spaceless %}
     {% if required %}
@@ -47,7 +53,7 @@ $(document).ready(function() {
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
             {% if label is not sameas(false) %}
-                {{ label|trans({}, translation_domain) }}
+                <span class="inlineLabel">{{ label|trans({}, translation_domain)|raw }}</span>
             {% endif %}
         </label>
     {% else %}
@@ -55,7 +61,7 @@ $(document).ready(function() {
             <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
                 <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
                 {% if label is not sameas(false) %}
-                    {{ label|trans({}, translation_domain) }}
+                    <span class="inlineLabel">{{ label|trans({}, translation_domain) }}</span>
                 {% endif %}
             </label>
         </div>

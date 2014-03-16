@@ -35,6 +35,13 @@ class InstructorRating
     /**
      * @var string
      *
+     * @ORM\Column(name="methodUsedOtherCheck", type="string", length=255)
+     */
+    private $methodUsedOtherCheck;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="methodUsedOther", type="text", nullable=true)
      */
     private $methodUsedOther;
@@ -45,6 +52,13 @@ class InstructorRating
      * @ORM\Column(name="skillsDeveloped", type="array", nullable=true)
      */
     private $skillsDeveloped;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="skillsDevelopedOtherCheck", type="string", length=255)
+     */
+    private $skillsDevelopedOtherCheck;
 
     /**
      * @var string
@@ -294,8 +308,9 @@ class InstructorRating
     {
         $methodUsed = $this->getMethodUsed();
         $methodUsedOther = $this->getMethodUsedOther();
+        $methodUsedOtherCheck = $this->getMethodUsedOtherCheck();
 
-        if ((!$methodUsed || empty($methodUsed)) and (!$methodUsedOther || rtrim($methodUsedOther) == "")) {
+        if ((!$methodUsed || empty($methodUsed)) and !($methodUsedOtherCheck and !(!$methodUsedOther || rtrim($methodUsedOther) == ""))) {
             $context->addViolationAt(
                 'methodUsed',
                 'You must answer this question.',
@@ -315,5 +330,51 @@ class InstructorRating
                 null
             );
         }
+    }
+
+    /**
+     * Set methodUsedOtherCheck
+     *
+     * @param string $methodUsedOtherCheck
+     * @return InstructorRating
+     */
+    public function setMethodUsedOtherCheck($methodUsedOtherCheck)
+    {
+        $this->methodUsedOtherCheck = $methodUsedOtherCheck;
+
+        return $this;
+    }
+
+    /**
+     * Get methodUsedOtherCheck
+     *
+     * @return string 
+     */
+    public function getMethodUsedOtherCheck()
+    {
+        return $this->methodUsedOtherCheck;
+    }
+
+    /**
+     * Set skillsDevelopedOtherCheck
+     *
+     * @param string $skillsDevelopedOtherCheck
+     * @return InstructorRating
+     */
+    public function setSkillsDevelopedOtherCheck($skillsDevelopedOtherCheck)
+    {
+        $this->skillsDevelopedOtherCheck = $skillsDevelopedOtherCheck;
+
+        return $this;
+    }
+
+    /**
+     * Get skillsDevelopedOtherCheck
+     *
+     * @return string 
+     */
+    public function getSkillsDevelopedOtherCheck()
+    {
+        return $this->skillsDevelopedOtherCheck;
     }
 }

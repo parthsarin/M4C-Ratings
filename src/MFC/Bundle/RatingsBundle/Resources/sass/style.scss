@@ -93,7 +93,10 @@ form {
 	label.radio-inline {
 		border-radius: 5px;
 		padding: 0 8px;
-		width: 80px;
+		width: 120px;
+		span {
+			margin-left: 3px;
+		}
 		&:nth-child(1) {
 			background-color: #f23034;
 		}
@@ -130,7 +133,24 @@ form {
 		width: 185px;
 		input {
 			float: none;
-			margin: 0;
+			margin-left: 5px;
+		}
+	}
+}
+
+.other-sameline {
+	.form-group {
+		> label {
+			float: left;
+			width: 8.333333333333332%;
+			margin-right: 9px;
+			height: 34px;
+			display: flex;
+			align-items: center;
+		}
+		> input {
+			float: left;
+			width: 91%;
 		}
 	}
 }
