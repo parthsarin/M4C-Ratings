@@ -102,15 +102,15 @@
 	{{ form_start(form) }}
 		<div class="form-custom-group clearfix">
 			{{ form_row(form.methodUsed, {'inline': true}) }}
-            <div class="other-sameline">
-                {{ form_row(form.methodUsedOtherCheck, {'inline': true}) }}
-    			{{ form_row(form.methodUsedOther) }}
+            <div class="other-sameline clearfix">
+                {# {{ form_row(form.methodUsedOtherCheck, {'inline': true}) }} #}
+                {{ form_row(form.methodUsedOther, {'inline': true, 'class': 'clearfix'}) }}
             </div>
 		</div>
 		<div class="form-custom-group clearfix">
 			{{ form_row(form.skillsDeveloped, {'inline': true}) }}
             <div class="other-sameline">
-                {{ form_row(form.skillsDevelopedOtherCheck, {'inline': true}) }}
+                {# {{ form_row(form.skillsDevelopedOtherCheck, {'inline': true}) }} #}
 			    {{ form_row(form.skillsDevelopedOther) }}
             </div>
 		</div>

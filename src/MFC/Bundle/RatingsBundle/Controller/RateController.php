@@ -23,31 +23,32 @@ class RateController extends Controller
 	/**
 	 * @Route("/{slug}/1", name="page_maplet_1")
 	 * @Method("GET|POST")
-	 * @Template("MFCRatingsBundle:Rate:student_instructor.html.twig")
+	 * @Template("MFCRatingsBundle:Rate:gateway.html.twig")
 	 */
 	public function studentInstructorAction(Maplet $maplet, Request $request)
 	{
-		$person = new Person();
+		// $person = new Person();
 
-		$form = $this->createStudentInstructorForm($person, $maplet);
+		// $form = $this->createStudentInstructorForm($person, $maplet);
 
-		if ($request->getMethod() == "POST") {
-			$form->handleRequest($request);
+		// if ($request->getMethod() == "POST") {
+		// 	$form->handleRequest($request);
 
-			if ($form->isValid()) {
-				$role = $person->getRole();
+		// 	if ($form->isValid()) {
+		// 		$role = $person->getRole();
 
-				if ($role == "student") {
-					return $this->redirect($this->generateUrl('page_maplet_2', array('role' => 'student', 'slug' => $maplet->getSlug())));
-				} else {
-					return $this->redirect($this->generateUrl('page_maplet_2', array('role' => 'instructor', 'slug' => $maplet->getSlug())));
-				}
-			}
-		}
+		// 		if ($role == "student") {
+		// 			return $this->redirect($this->generateUrl('page_maplet_2', array('role' => 'student', 'slug' => $maplet->getSlug())));
+		// 		} else {
+		// 			return $this->redirect($this->generateUrl('page_maplet_2', array('role' => 'instructor', 'slug' => $maplet->getSlug())));
+		// 		}
+		// 	}
+		// }
 
-		$form = $form->createView();
+		// $form = $form->createView();
 
-		return compact( 'form', 'maplet' );
+		// return compact( 'form', 'maplet' );
+		return compact('maplet');
 	}
 
 	/**

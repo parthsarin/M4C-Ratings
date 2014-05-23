@@ -1,0 +1,59 @@
+{% extends 'MFCRatingsBundle::layout.html.twig' %}
+
+{% block title %}{{ maplet.name }}{% endblock %}
+
+{% block css %}
+{{ parent() }}
+<style>
+	a.link-block, a.link-block:hover, a.link-block:active {
+	    color: inherit;
+	    text-decoration: none;
+	}
+
+	a.link-block .panel {
+	    background-color: #f3f3f3;
+	}
+
+	a.student .panel {
+	    background-color: #FF87C3;
+	}
+	a.student .panel:hover {
+	    background-color: #E67AB0;
+	}
+
+	a.instructor .panel {
+	    background-color: #5BED6B;
+	}
+	a.instructor .panel:hover {
+	    background-color: #51D460;
+	}
+</style>
+{% endblock %}
+
+{% block main %}
+	<div class="page-header">
+		<p class="lead">Welcome to the Maplets rating page. Thank you for choosing to provide feedback on the <strong>{{ maplet.name }}</strong> Maplet. Before we continue, please let us know whether you are a student in the course or an instructor teaching the course. You can also leave comments. Responses will be used to create statistics that may be displayed to other users, but no identifying personal data will be collected or displayed.</p>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'student'}) }}" class="link-block student">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h2>Student</h2>
+						<p>You will be asked if you learned from the maplet, if it is useful for tests, and if you have had your test yet.</p>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-6">
+			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'instructor'}) }}" class="link-block instructor">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h2>Instructor</h2>
+						<p>You will be asked how you use the maplet, what you think your students learn, and for your overall opinion of the maplet.</p>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+{% endblock %}

@@ -42,13 +42,13 @@ form input[type="checkbox"] { margin-left: 15px; margin-right: 2px; }
 form ul { list-style: none; display: flex; flex-direction: row-reverse; }
 form ul li { color: red; }
 
-.radio-rating-widget label.radio-inline { border-radius: 5px; padding: 0 8px; width: 120px; }
+.radio-rating-widget label.radio-inline { border-radius: 5px; padding: 0 8px; width: 120px; color: #6E6E6E; }
 .radio-rating-widget label.radio-inline span { margin-left: 3px; }
 .radio-rating-widget label.radio-inline:nth-child(1) { background-color: #f23034; }
 .radio-rating-widget label.radio-inline:nth-child(2) { background-color: orange; }
 .radio-rating-widget label.radio-inline:nth-child(3) { background-color: #FF0; }
-.radio-rating-widget label.radio-inline:nth-child(4) { background-color: #3ac73e; color: white; }
-.radio-rating-widget label.radio-inline:nth-child(5) { background-color: #3e94f0; color: white; }
+.radio-rating-widget label.radio-inline:nth-child(4) { background-color: #3ac73e; }
+.radio-rating-widget label.radio-inline:nth-child(5) { background-color: #3e94f0; }
 .radio-rating-widget label.radio-inline input { float: none; margin: 0; }
 
 .form-custom-group { border: 1px solid #ccc; border-radius: 4px; margin: 8px 0; padding: 8px; }
