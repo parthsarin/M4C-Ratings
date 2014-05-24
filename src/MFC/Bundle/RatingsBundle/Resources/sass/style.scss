@@ -94,7 +94,7 @@ form {
 		border-radius: 5px;
 		padding: 0 8px;
 		width: 120px;
-		color: #6E6E6E;
+		color: #000000;
 		span {
 			margin-left: 3px;
 		}
@@ -131,7 +131,8 @@ form {
 		border-radius: 8px;
 		background-color: #d95ce6;
 		padding: 2px;
-		width: 185px;
+		width: 200px;
+		font-weight: bold !important;
 		input {
 			float: none;
 			margin-left: 5px;
