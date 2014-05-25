@@ -9,3 +9,19 @@
 {{ parent() }}
 <script src="{{ asset('bundles/mfcratings/js/global.min.js') }}"></script>
 {% endblock %}
+
+{% set role = app.request.cookies.get('MFC_ROLE') %}
+
+{% block footer %}
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <p class="navbar-text">Copyright &copy; {{ "now"|date("Y") }} by Maplets for Calculus | Programmed and Designed by Parth Sarin | <span>You are
+        {% if role == "instructor" %}
+		an instructor.
+		{% else %}
+		a student.
+        {% endif %}
+        </span> Not you? Click <a href="{{ path('page_gateway') }}">here</a>.</p>
+    </div>
+</div>
+{% endblock %}

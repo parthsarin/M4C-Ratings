@@ -1,6 +1,12 @@
-{% extends 'MFCRatingsBundle::layout.html.twig' %}
+{% extends 'MFCRatingsBundle::gatewayLayout.html.twig' %}
 
-{% block title %}{{ maplet.name }}{% endblock %}
+{% block title %}
+{% if maplet is defined %}
+{{ maplet.name }}
+{% else %}
+Rating Maplets
+{% endif %}
+{% endblock %}
 
 {% block css %}
 {{ parent() }}
@@ -32,11 +38,23 @@
 
 {% block main %}
 	<div class="page-header">
-		<p class="lead">Welcome to the Maplets rating page. Thank you for choosing to provide feedback on the <strong>{{ maplet.name }}</strong> Maplet. Before we continue, please let us know whether you are a student in the course or an instructor teaching the course. You can also leave comments. Responses will be used to create statistics that may be displayed to other users, but no identifying personal data will be collected or displayed.</p>
+		<p class="lead">Welcome to the Maplets rating page. 
+		{% if maplet is defined %}
+		Thank you for choosing to provide feedback on the <strong>{{ maplet.name }}</strong> Maplet.
+		{% endif %}
+		Before we continue, please let us know whether you are a student in the course or an instructor teaching the course. You can also leave comments. Responses will be used to create statistics that may be displayed to other users, but no identifying personal data will be collected or displayed.</p>
 	</div>
 	<div class="row">
 		<div class="col-sm-6">
+			{% if slug is defined %}
+			<a href="{{ path('set_role_cookie_slug', {'role': 'student', 'backtrack': backtrack, 'slug': slug }) }}" class="link-block student">
+			{% else %}
+			{% if maplet is defined %}
 			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'student'}) }}" class="link-block student">
+			{% else %}
+			<a href="{{ path('set_role_cookie', {'role': 'student', 'backtrack': backtrack }) }}" class="link-block student">
+			{% endif %}
+			{% endif %}
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<h2>Student</h2>
@@ -46,7 +64,15 @@
 			</a>
 		</div>
 		<div class="col-sm-6">
+			{% if slug is defined %}
+			<a href="{{ path('set_role_cookie_slug', {'role': 'instructor', 'backtrack': backtrack, 'slug': slug }) }}" class="link-block instructor">
+			{% else %}
+			{% if maplet is defined %}
 			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'instructor'}) }}" class="link-block instructor">
+			{% else %}
+			<a href="{{ path('set_role_cookie', {'role': 'instructor', 'backtrack': backtrack }) }}" class="link-block instructor">
+			{% endif %}
+			{% endif %}
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<h2>Instructor</h2>

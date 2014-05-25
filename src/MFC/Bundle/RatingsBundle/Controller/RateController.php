@@ -48,7 +48,15 @@ class RateController extends Controller
 		// $form = $form->createView();
 
 		// return compact( 'form', 'maplet' );
-		return compact('maplet');
+		
+		if (null == $request->cookies->get('MFC_ROLE'))
+		{
+			$backtrack = "page_maplet_2";
+			return compact('maplet', 'backtrack');
+		}
+
+		$slug = $maplet->getSlug();
+		return $this->redirect($this->generateUrl('page_maplet_3', compact('slug')));
 	}
 
 	/**
@@ -65,11 +73,18 @@ class RateController extends Controller
 	}
 
 	/**
-	 * @Route("/{slug}/{role}/3", name="page_maplet_3")
+	 * @Route("/{slug}/3", name="page_maplet_3")
 	 * @Method("GET")
 	 */
-	public function finalAction(Maplet $maplet, $role)
+	public function finalAction(Maplet $maplet, Request $request)
 	{
+		if (null == $request->cookies->get('MFC_ROLE'))
+		{
+			return $this->render('MFCRatingsBundle:Rate:gateway.html.twig', array('maplet' => $maplet,'backtrack' => 'page_maplet_1', 'slug' => $maplet->getSlug()));
+		}
+
+		$role = $request->cookies->get("MFC_ROLE");
+
 		if ($role != "student" and $role != "instructor") {
 			return $this->redirect($this->generateUrl('page_index'));
 		}	

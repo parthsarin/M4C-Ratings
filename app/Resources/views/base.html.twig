@@ -33,10 +33,12 @@
             {% block main %}{% endblock %}
         </div>
     </div>
+    {% block footer %}
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
             <p class="navbar-text">Copyright &copy; {{ "now"|date("Y") }} by Maplets for Calculus | Programmed and Designed by Parth Sarin</p>
         </div>
     </div>
+    {% endblock %}
 </body>
 </html>
