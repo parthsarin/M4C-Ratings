@@ -49,7 +49,7 @@ class PageController extends Controller
 	 * @Route("/set_cookie/{role}/{backtrack}", name="set_role_cookie")
 	 * @Method("GET")
 	 */
-	public function setCookieForRoleSlug($role, $backtrack)
+	public function setCookieForRole($role, $backtrack)
 	{
 		setcookie('MFC_ROLE', $role, time() + (10 * 365 * 24 * 60 * 60), '/');
 		return $this->redirect($this->generateUrl($backtrack));
@@ -59,7 +59,7 @@ class PageController extends Controller
 	 * @Route("/set_cookie/{role}/{backtrack}/{slug}", name="set_role_cookie_slug")
 	 * @Method("GET")
 	 */
-	public function setCookieForRole($role, $backtrack, $slug)
+	public function setCookieForRoleSlug($role, $backtrack, $slug)
 	{
 		setcookie('MFC_ROLE', $role, time() + (10 * 365 * 24 * 60 * 60), '/');
 		return $this->redirect($this->generateUrl($backtrack, compact('slug')));
