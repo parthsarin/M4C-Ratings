@@ -17,17 +17,17 @@ class StudentRatingType extends AbstractType
         $builder
             ->add('timeEval', 'choice', array(
                 'attr' => array(
-                    'class' => 'form-control'
                 ),
                 'choices' => array(
                     'before' => 'Before my quiz or exam.',
                     'after' => 'After my quiz or exam.',
                 ),
-                'label' => '1. When are you evaluating?'
+                'label' => '1. When are you evaluating?',
+                'expanded' => true
             ))
             ->add('learnt', 'choice', array(
                 'attr' => array(
-                    'class' => 'form-control btn-group',
+                    'class' => 'btn-group',
                 ),
                 'multiple' => false,
                 'expanded' => true,
@@ -42,7 +42,6 @@ class StudentRatingType extends AbstractType
             ))
             ->add('usefulPast', 'choice', array(
                 'attr' => array(
-                    'class' => 'form-control',
                 ),
                 'multiple' => false,
                 'expanded' => true,
@@ -57,7 +56,6 @@ class StudentRatingType extends AbstractType
             ))
             ->add('usefulFuture', 'choice', array(
                 'attr' => array(
-                    'class' => 'form-control',
                 ),
                 'multiple' => false,
                 'expanded' => true,

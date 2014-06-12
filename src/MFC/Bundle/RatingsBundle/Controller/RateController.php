@@ -73,7 +73,7 @@ class RateController extends Controller
 	}
 
 	/**
-	 * @Route("/{slug}/3", name="page_maplet_3")
+	 * @Route("/{slug}", name="page_maplet_3")
 	 * @Method("GET")
 	 */
 	public function finalAction(Maplet $maplet, Request $request)

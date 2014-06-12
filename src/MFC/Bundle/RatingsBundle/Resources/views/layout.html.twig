@@ -3,6 +3,20 @@
 {% block css %}
 {{ parent() }}
 <link rel="stylesheet" href="{{ asset('bundles/mfcratings/css/style.css') }}">
+<style>
+.MFCRoleChange {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    color: #FFF;
+}
+.MFCRoleChange a {
+    color: #FFF;
+}
+.MFCRoleChange a:hover {
+    color: grey;
+}
+</style>
 {% endblock %}
 
 {% block js %}
@@ -12,16 +26,23 @@
 
 {% set role = app.request.cookies.get('MFC_ROLE') %}
 
+{% block header %}
+{{ parent() }}
+<div class="MFCRoleChange">
+    <span><a href="{{ path('page_gateway') }}">Not
+    {% if role == "instructor" %}
+            an instructor?
+            {% else %}
+            a student?
+    {% endif %}
+    </a></span>
+</div>
+{% endblock %}
+
 {% block footer %}
 <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        <p class="navbar-text">Copyright &copy; {{ "now"|date("Y") }} by Maplets for Calculus | Programmed and Designed by Parth Sarin | <span>You are
-        {% if role == "instructor" %}
-		an instructor.
-		{% else %}
-		a student.
-        {% endif %}
-        </span> Not you? Click <a href="{{ path('page_gateway') }}">here</a>.</p>
+        <p class="navbar-text">Copyright &copy; {{ "now"|date("Y") }} by Maplets for Calculus | Programmed and Designed by Parth Sarin</p>
     </div>
 </div>
 {% endblock %}

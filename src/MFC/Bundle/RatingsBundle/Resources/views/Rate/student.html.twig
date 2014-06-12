@@ -2,6 +2,19 @@
 
 {% block title %}{{ maplet.name }}{% endblock %}
 
+{% block css %}
+{{ parent() }}
+<style>
+label.radio-inline {
+    border-radius: 8px;
+    background-color: #D95CE6;
+    padding: 2px;
+    width: 300px;
+    font-weight: bold !important;
+}
+</style>
+{% endblock %}
+
 {% block js %}
 {{ parent() }}
 <script>
@@ -19,7 +32,7 @@ $(document).ready(function() {
 {% endblock %}
 
 {% block mapletName %}
-	<h2>Evaluating: {{ maplet.name }}</h2>
+	<h2>Rating: <span style="color: #000;">{{ maplet.name }}</span></h2>
 {% endblock %}
 
 {% form_theme form _self %}
@@ -82,13 +95,13 @@ $(document).ready(function() {
 
 {% block main %}
 	{{ form_start(form) }}	
-		{{ form_row(form.timeEval) }}
-		<div class="radio-rating-widget">{{ form_row(form.learnt, {'inline': true}) }}</div>
+        <div class="form-custom-group clearfix">{{ form_row(form.timeEval, {'inline': true}) }}</div>
+		<div class="form-custom-group radio-rating-widget">{{ form_row(form.learnt, {'inline': true}) }}</div>
 		<div class="usefulPast hideNonUseful">
-			<div class="radio-rating-widget">{{ form_row(form.usefulPast, {'inline': true}) }}</div>
+			<div class="form-custom-group radio-rating-widget">{{ form_row(form.usefulPast, {'inline': true}) }}</div>
 		</div>
 		<div class="usefulFuture">
-			<div class="radio-rating-widget">{{ form_row(form.usefulFuture, {'inline': true}) }}</div>
+			<div class="form-custom-group radio-rating-widget">{{ form_row(form.usefulFuture, {'inline': true}) }}</div>
 		</div>
 		{{ form_row(form.comments) }}
 		{{ form_row(form.submit) }}

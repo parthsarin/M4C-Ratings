@@ -25,7 +25,7 @@ class InstructorRatingType extends AbstractType
                 'expanded' => true,
                 'attr' => array(
                 ),
-                'label' => '1. How are you using this maplet in your class? (Check 0, 1, 2, or 3.)'
+                'label' => '1. How are you using this maplet in your class? (Check all that apply.)'
             ))
             // ->add('methodUsedOtherCheck', 'checkbox', array(
             //     'label' => 'Other',
@@ -47,7 +47,7 @@ class InstructorRatingType extends AbstractType
                 'expanded' => true,
                 'attr' => array(
                 ),
-                'label' => '2. What skills does this maplet help develop? (Check 0, 1, 2, or 3.)'
+                'label' => '2. What skills does this maplet help develop? (Check all that apply.)'
             ))
             // ->add('skillsDevelopedOtherCheck', 'checkbox', array(
             //     'label' => 'Other',
@@ -61,7 +61,6 @@ class InstructorRatingType extends AbstractType
             ))
             ->add('rating', 'choice', array(
                 'attr' => array(
-                    'class' => 'form-control',
                 ),
                 'multiple' => false,
                 'expanded' => true,

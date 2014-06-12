@@ -3,7 +3,7 @@
 {% block title %}{{ maplet.name }}{% endblock %}
 
 {% block mapletName %}
-	<h2>Evaluating: {{ maplet.name }}</h2>
+	<h2>Rating: <span style="color: #000;">{{ maplet.name }}</span></h2>
 {% endblock %}
 
 {% form_theme form _self %}
@@ -13,6 +13,9 @@
             {{ form_label(form) }}
         {% endif %}
 		{{ form_errors(form) }}
+        {% if specialMessage is defined %}
+            <span>{{ specialMessage }} </span>
+        {% endif %}
 		{{ form_widget(form) }}
 	</div>
 {% endblock %}
@@ -111,10 +114,10 @@
 			{{ form_row(form.skillsDeveloped, {'inline': true}) }}
             <div class="other-sameline">
                 {# {{ form_row(form.skillsDevelopedOtherCheck, {'inline': true}) }} #}
-			    {{ form_row(form.skillsDevelopedOther) }}
+                {{ form_row(form.skillsDevelopedOther, {'inline': true}) }}
             </div>
 		</div>
-		<div class="radio-rating-widget">{{ form_row(form.rating, {'inline': true}) }}</div>
+		<div class="form-custom-group radio-rating-widget">{{ form_row(form.rating, {'inline': true}) }}</div>
 		{{ form_row(form.comments) }}
 		{{ form_row(form.submit) }}
 	{{ form_end(form) }}
