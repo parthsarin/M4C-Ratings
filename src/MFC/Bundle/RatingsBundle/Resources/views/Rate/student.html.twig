@@ -95,7 +95,7 @@ $(document).ready(function() {
 
 {% block main %}
 	{{ form_start(form) }}	
-        <div class="form-custom-group clearfix">{{ form_row(form.timeEval, {'inline': true}) }}</div>
+        <div class="form-custom-group radio-choice-widget">{{ form_row(form.timeEval, {'inline': true}) }}</div>
 		<div class="form-custom-group radio-rating-widget">{{ form_row(form.learnt, {'inline': true}) }}</div>
 		<div class="usefulPast hideNonUseful">
 			<div class="form-custom-group radio-rating-widget">{{ form_row(form.usefulPast, {'inline': true}) }}</div>
