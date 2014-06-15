@@ -85,6 +85,7 @@ class StudentRating
     public function __construct()
     {
         $this->created = new \DateTime();
+        $this->timeEval = 'before';
     }
 
     /**

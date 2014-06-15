@@ -16,14 +16,12 @@ class StudentRatingType extends AbstractType
     {
         $builder
             ->add('timeEval', 'choice', array(
-                'attr' => array(
-                ),
+                'expanded' => true,
                 'choices' => array(
                     'before' => 'Before my quiz or exam.',
                     'after' => 'After my quiz or exam.',
                 ),
                 'label' => '1. When are you evaluating?',
-                'expanded' => true
             ))
             ->add('learnt', 'choice', array(
                 'attr' => array(
