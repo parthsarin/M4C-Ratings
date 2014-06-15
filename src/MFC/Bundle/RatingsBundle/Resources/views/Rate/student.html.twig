@@ -12,6 +12,9 @@ label.radio-inline {
     width: 300px;
     font-weight: bold !important;
 }
+div#mfc_bundle_ratingsbundle_studentrating_learnt {
+    width: 100%;
+}
 </style>
 {% endblock %}
 
@@ -19,7 +22,7 @@ label.radio-inline {
 {{ parent() }}
 <script>
 $(document).ready(function() {
-	var studentTeacher = $('select#mfc_bundle_ratingsbundle_studentrating_timeEval').val()
+	var studentTeacher = $('input:radio').val()
 	if (studentTeacher == "before") {
 		$('.usefulFuture').show();
 		$('.usefulPast').hide();
@@ -97,7 +100,7 @@ $(document).ready(function() {
 	{{ form_start(form) }}	
         <div class="form-custom-group radio-choice-widget">{{ form_row(form.timeEval, {'inline': true}) }}</div>
 		<div class="form-custom-group radio-rating-widget">{{ form_row(form.learnt, {'inline': true}) }}</div>
-		<div class="usefulPast hideNonUseful">
+		<div class="usefulPast">
 			<div class="form-custom-group radio-rating-widget">{{ form_row(form.usefulPast, {'inline': true}) }}</div>
 		</div>
 		<div class="usefulFuture">
