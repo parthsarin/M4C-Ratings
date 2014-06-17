@@ -36,7 +36,7 @@ class StudentRatingType extends AbstractType
                     '4' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                     '5' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                 ),
-                'label' => '2. How much did you learn from this maplet? (<i class="fa fa-star"></i> = very little, <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> = a lot)',
+                'label' => '2. How much did you learn from this maplet? (<i class="fa fa-star"></i> = very little, <span class="starWrapper"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span> = a lot)',
             ))
             ->add('usefulPast', 'choice', array(
                 'attr' => array(
@@ -50,7 +50,7 @@ class StudentRatingType extends AbstractType
                     '4' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                     '5' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                 ),
-                'label' => '3. How useful do you think this maplet was on your test? (<i class="fa fa-star"></i> = very little, <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> = a lot)',
+                'label' => '3. How useful do you think this maplet was on your test? (<i class="fa fa-star"></i> = very little, <span class="starWrapper"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span> = a lot)',
             ))
             ->add('usefulFuture', 'choice', array(
                 'attr' => array(
@@ -64,7 +64,7 @@ class StudentRatingType extends AbstractType
                     '4' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                     '5' => '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>',
                 ),
-                'label' => '3. How useful do you think this maplet will be on your test? (<i class="fa fa-star"></i> = very little, <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> = a lot)',
+                    'label' => '3. How useful do you think this maplet will be on your test? (<i class="fa fa-star"></i> = very little, <span class="starWrapper"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span> = a lot)',
             ))
             ->add('comments', 'textarea', array(
                 'label' => 'Additional Comments:',

@@ -64,6 +64,8 @@ form ul li { color: red; }
 
 .hideNonUseful { display: none; }
 
+.starWrapper { white-space: nowrap; }
+
 /* BOOTSTRAP STYLING (EXTENSION) */
 .btn-pink { color: #ffffff; background-color: #F205D3; border-color: #F531DB; }
 
