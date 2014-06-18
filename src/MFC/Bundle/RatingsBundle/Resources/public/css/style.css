@@ -50,8 +50,7 @@ form ul li { color: red; }
 .radio-rating-widget label.radio-inline:nth-child(4) { background-color: #3ac73e; }
 .radio-rating-widget label.radio-inline:nth-child(5) { background-color: #3e94f0; }
 
-.radio-choice-widget label.radio-inline input,
-.radio-rating-widget label.radio-inline input { float: none; margin: 0 3px 0 8px; }
+.radio-rating-widget label.radio-inline input, .radio-rating-widget label.radio-inline input { float: none; margin: 0 3px 0 8px; }
 
 .checkbox-inline, .radio-inline { margin: 3px 0 0 10px !important; }
 
@@ -64,10 +63,7 @@ form ul li { color: red; }
 
 .hideNonUseful { display: none; }
 
-.starWrapper { white-space: nowrap; }
-
 /* BOOTSTRAP STYLING (EXTENSION) */
 .btn-pink { color: #ffffff; background-color: #F205D3; border-color: #F531DB; }
 
 .btn-pink:hover, .btn-pink:focus, .btn-pink:active, .btn-pink.active, .open .dropdown-toggle.btn-pink { color: #ffffff; background-color: #CC04B1; border-color: #CC29B6; }
-
