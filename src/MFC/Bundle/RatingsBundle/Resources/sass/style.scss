@@ -92,7 +92,7 @@ form {
 .radio-rating-widget {
 	label.radio-inline {
 		border-radius: 5px;
-		padding: 0 8px;
+		padding: 0;
 		width: 120px;
 		color: #000000;
 		span {
@@ -115,11 +115,18 @@ form {
 			background-color: #3e94f0;
 			// color: white;
 		}
-		input {	
-			float: none;
-			margin: 0;
-		}
 	}
+}
+
+.radio-rating-widget, .radio-rating-widget {
+	label.radio-inline input {
+		float: none;
+		margin: 0 3px 0 8px;
+	}
+}
+
+.checkbox-inline, .radio-inline {
+	margin: 3px 0 0 10px !important;
 }
 
 .form-custom-group {
@@ -144,13 +151,13 @@ form {
 	.form-group {
 		> label {
 			float: left;
-			width: 8.333333333333332%;
-			margin-right: 9px;
+			width: 8%;
 			height: 34px;
 			display: flex;
 			align-items: center;
 		}
 		> input {
+			display: inline-block;
 			float: left;
 			width: 91%;
 		}
