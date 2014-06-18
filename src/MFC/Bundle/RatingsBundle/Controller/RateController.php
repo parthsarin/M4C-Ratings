@@ -104,7 +104,7 @@ class RateController extends Controller
 	}
 
 	/**
-	 * @Route("/{slug}/student/4", name="maplet_final_submit_student")
+	 * @Route("/{slug}/error", name="maplet_final_submit_student")
 	 * @Method("POST")
 	 */
 	public function mapletStudentSubmitAction(Maplet $maplet, Request $request)
@@ -131,7 +131,7 @@ class RateController extends Controller
 	}
 
 	/**
-	 * @Route("/{slug}/instructor/4", name="maplet_final_submit_instructor")
+	 * @Route("/{slug}/finish/error", name="maplet_final_submit_instructor")
 	 * @Method("POST")
 	 * @Template("MFCRatingsBundle:Rate:instructor.html.twig")
 	 */

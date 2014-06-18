@@ -22,8 +22,8 @@ div#mfc_bundle_ratingsbundle_studentrating_learnt {
 {{ parent() }}
 <script>
 $(document).ready(function() {
-	var studentTeacher = $('input:radio').val()
-	if (studentTeacher == "before") {
+	var timeEval = $('#mfc_bundle_ratingsbundle_studentrating_timeEval input:checked').val()
+	if (timeEval == "before") {
 		$('.usefulFuture').show();
 		$('.usefulPast').hide();
 	} else {
