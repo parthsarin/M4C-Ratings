@@ -118,6 +118,13 @@ form {
 	}
 }
 
+.radio-choice-widget, .radio-rating-widget {
+    label.radio-inline input {
+        float: none;
+        margin: 0 3px 0 8px;
+    }
+}
+
 .radio-rating-widget, .radio-rating-widget {
 	label.radio-inline input {
 		float: none;
