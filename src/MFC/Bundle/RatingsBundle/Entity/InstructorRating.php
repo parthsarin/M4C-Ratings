@@ -384,4 +384,27 @@ class InstructorRating
     // {
     //     return $this->skillsDevelopedOtherCheck;
     // }
+
+    /**
+     * Set version
+     *
+     * @param string $version
+     * @return InstructorRating
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return string 
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
 }

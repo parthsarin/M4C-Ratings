@@ -32,7 +32,7 @@ $(document).ready(function() {
 		<p>Thank you for rating that maplet. The rating was successfully submitted!</p>
 		<a href="#" id="dismissButton" class="btn btn-pink">Click to dismiss</a>
 		<span>or</span>
-		<a href="{{ path('page_index') }}" class="btn btn-success">Rate Another Maplet</a>
+        <a href="{{ path('page_index', {'version': version}) }}" class="btn btn-success">Rate Another Maplet</a>
 	</div>
 	<div class="thanks">
 		<p>Thank you.</p>

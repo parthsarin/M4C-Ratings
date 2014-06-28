@@ -58,7 +58,7 @@ class PageController extends Controller
         }
 
 	/**
-	 * @Route("/{version}", name="page_index")
+	 * @Route("/{version}", name="page_index", requirements={"version" = "\d+\.?\d*"})
 	 * @Method("GET")
 	 * @Template
 	 */
@@ -108,12 +108,12 @@ class PageController extends Controller
 	}
 
 	/**
-	 * @Route("/thanks", name="page_thanks")
+	 * @Route("/{version}/thanks", name="page_thanks")
 	 * @Method("GET")
 	 * @Template
 	 */
-	public function thanksAction()
+	public function thanksAction($version)
 	{
-		return array();
+		return compact('version');
 	}
 }

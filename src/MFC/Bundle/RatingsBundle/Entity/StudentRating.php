@@ -301,4 +301,27 @@ class StudentRating
     {
         return $this->maplet;
     }
+
+    /**
+     * Set version
+     *
+     * @param string $version
+     * @return StudentRating
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return string 
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
 }

@@ -60,7 +60,7 @@ class RateController extends Controller
 	{
 		$studentRating = new StudentRating();
 		$studentRating->setMaplet($maplet);
-		$form = $this->createStudentRatingForm($studentRating);
+		$form = $this->createStudentRatingForm($studentRating, $version);
 
 		$form->handleRequest($request);
 
@@ -73,12 +73,12 @@ class RateController extends Controller
 			$em->flush();
 
 			// $this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
-			return $this->redirect($this->generateUrl('page_thanks'));
+			return $this->redirect($this->generateUrl('page_thanks', compact('version')));
 		}
 
 		$form = $form->createView();
 
-		return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
+		return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form', 'version'));
 	}
 
 	/**
@@ -90,7 +90,7 @@ class RateController extends Controller
 	{
 		$instructorRating = new InstructorRating();
 		$instructorRating->setMaplet($maplet);
-		$form = $this->createInstructorRatingForm($instructorRating);
+		$form = $this->createInstructorRatingForm($instructorRating, $version);
 
 		$form->handleRequest($request);
 
@@ -103,11 +103,11 @@ class RateController extends Controller
 			$em->flush();
 
 			// $this->get('session')->getFlashBag()->add('notice-success', 'The rating was successfully submitted! Click to dismiss.');
-			return $this->redirect($this->generateUrl('page_thanks'));
+			return $this->redirect($this->generateUrl('page_thanks', compact('version')));
 		}
 
 		$form = $form->createView();
-		return compact('maplet', 'form');
+		return compact('maplet', 'form', 'version');
 	}
 
 	/**
@@ -116,11 +116,11 @@ class RateController extends Controller
 	 * @param StudentRating $studentRating "The student rating to create a form for."
 	 * @return Form "The form to render and display"
 	 */
-	public function createStudentRatingForm(StudentRating $studentRating)
+	public function createStudentRatingForm(StudentRating $studentRating, $version)
 	{
 		$form = $this->createForm(new StudentRatingType(), $studentRating, array(
 			'method' => 'POST',
-			'action' => $this->generateUrl('maplet_final_submit_student', array('slug' => $studentRating->getMaplet()->getSlug())),
+			'action' => $this->generateUrl('maplet_final_submit_student', array('slug' => $studentRating->getMaplet()->getSlug(), 'version' => $version)),
 			'attr' => array(
 				'novalidate' => true,
 			),

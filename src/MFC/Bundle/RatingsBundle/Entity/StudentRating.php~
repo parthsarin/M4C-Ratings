@@ -74,6 +74,13 @@ class StudentRating
     private $created;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="version", type="string", length=10)
+     */
+    private $version;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Maplet")
      * @ORM\JoinColumn(name="maplet_id", referencedColumnName="id")
      */
@@ -85,6 +92,7 @@ class StudentRating
     public function __construct()
     {
         $this->created = new \DateTime();
+        $this->timeEval = 'before';
     }
 
     /**

@@ -32,12 +32,12 @@ class InstructorRating
      */
     private $methodUsed;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="methodUsedOtherCheck", type="string", length=255)
-     */
-    private $methodUsedOtherCheck;
+    // *
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="methodUsedOtherCheck", type="string", length=255)
+     
+    // private $methodUsedOtherCheck;
 
     /**
      * @var string
@@ -53,12 +53,12 @@ class InstructorRating
      */
     private $skillsDeveloped;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="skillsDevelopedOtherCheck", type="string", length=255)
-     */
-    private $skillsDevelopedOtherCheck;
+    // *
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="skillsDevelopedOtherCheck", type="string", length=255)
+     
+    // private $skillsDevelopedOtherCheck;
 
     /**
      * @var string
@@ -90,6 +90,13 @@ class InstructorRating
      * @ORM\Column(name="created", type="datetime")
      */
     private $created;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="version", type="string", length=10)
+     */
+    private $version;
 
     /**
      * @ORM\ManyToOne(targetEntity="Maplet")
@@ -308,9 +315,9 @@ class InstructorRating
     {
         $methodUsed = $this->getMethodUsed();
         $methodUsedOther = $this->getMethodUsedOther();
-        $methodUsedOtherCheck = $this->getMethodUsedOtherCheck();
+        // $methodUsedOtherCheck = $this->getMethodUsedOtherCheck();
 
-        if ((!$methodUsed || empty($methodUsed)) and !($methodUsedOtherCheck and !(!$methodUsedOther || rtrim($methodUsedOther) == ""))) {
+        if ((!$methodUsed || empty($methodUsed)) and (!$methodUsedOther || rtrim($methodUsedOther) == "")) {
             $context->addViolationAt(
                 'methodUsed',
                 'You must answer this question.',
@@ -332,26 +339,49 @@ class InstructorRating
         }
     }
 
-    /**
-     * Set methodUsedOtherCheck
-     *
-     * @param string $methodUsedOtherCheck
-     * @return InstructorRating
-     */
-    public function setMethodUsedOtherCheck($methodUsedOtherCheck)
-    {
-        $this->methodUsedOtherCheck = $methodUsedOtherCheck;
+    // /**
+    //  * Set methodUsedOtherCheck
+    //  *
+    //  * @param string $methodUsedOtherCheck
+    //  * @return InstructorRating
+    //  */
+    // public function setMethodUsedOtherCheck($methodUsedOtherCheck)
+    // {
+    //     $this->methodUsedOtherCheck = $methodUsedOtherCheck;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get methodUsedOtherCheck
-     *
-     * @return string 
-     */
-    public function getMethodUsedOtherCheck()
-    {
-        return $this->methodUsedOtherCheck;
-    }
+    // /**
+    //  * Get methodUsedOtherCheck
+    //  *
+    //  * @return string 
+    //  */
+    // public function getMethodUsedOtherCheck()
+    // {
+    //     return $this->methodUsedOtherCheck;
+    // }
+
+    // /**
+    //  * Set skillsDevelopedOtherCheck
+    //  *
+    //  * @param string $skillsDevelopedOtherCheck
+    //  * @return InstructorRating
+    //  */
+    // public function setSkillsDevelopedOtherCheck($skillsDevelopedOtherCheck)
+    // {
+    //     $this->skillsDevelopedOtherCheck = $skillsDevelopedOtherCheck;
+
+    //     return $this;
+    // }
+
+    // /**
+    //  * Get skillsDevelopedOtherCheck
+    //  *
+    //  * @return string 
+    //  */
+    // public function getSkillsDevelopedOtherCheck()
+    // {
+    //     return $this->skillsDevelopedOtherCheck;
+    // }
 }
