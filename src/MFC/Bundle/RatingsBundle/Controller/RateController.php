@@ -40,15 +40,15 @@ class RateController extends Controller
 		if ($role == "student") {
 			$studentRating = new StudentRating();
 			$studentRating->setMaplet($maplet);
-			$form = $this->createStudentRatingForm($studentRating)->createView();
+			$form = $this->createStudentRatingForm($studentRating, $version)->createView();
 
-			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form', 'version'));
+			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
 		} else {
 			$instructorRating = new InstructorRating();
 			$instructorRating->setMaplet($maplet);
-			$form = $this->createInstructorRatingForm($instructorRating)->createView();
+			$form = $this->createInstructorRatingForm($instructorRating, $version)->createView();
 
-			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form', 'version'));
+			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form'));
 		}
 	}
 
@@ -137,11 +137,11 @@ class RateController extends Controller
 	 * @param InstructorRating $instructorRating "The instructor rating to create a form for."
 	 * @return Form "The form to render and display"
 	 */
-	public function createInstructorRatingForm(InstructorRating $instructorRating)
+	public function createInstructorRatingForm(InstructorRating $instructorRating, $version)
 	{
 		$form = $this->createForm(new InstructorRatingType(), $instructorRating, array(
 			'method' => 'POST',
-			'action' => $this->generateUrl('maplet_final_submit_instructor', array('slug' => $instructorRating->getMaplet()->getSlug())),
+			'action' => $this->generateUrl('maplet_final_submit_instructor', array('slug' => $instructorRating->getMaplet()->getSlug(), 'version' => $version)),
 			'attr' => array(
 				'novalidate' => true,
 			),
@@ -159,11 +159,11 @@ class RateController extends Controller
 	 * @param Maplet $maplet "The maplet used to generate a slug for the action."
 	 * @return Form "The form to display"
 	 */
-	public function createStudentInstructorForm(Person $person, Maplet $maplet)
+	public function createStudentInstructorForm(Person $person, Maplet $maplet, $version)
 	{
 		$form = $this->createForm(new PersonType(), $person, array(
 			'method' => 'POST',
-			'action' => $this->generateUrl('page_maplet_1', array('slug' => $maplet->getSlug())),
+			'action' => $this->generateUrl('page_maplet_1', array('slug' => $maplet->getSlug(), 'version' => $version)),
 		));
 
 		$form->add('continue', 'submit', array('attr' => array('class' => 'btn btn-default')));
