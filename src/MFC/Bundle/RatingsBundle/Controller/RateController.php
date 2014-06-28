@@ -21,93 +21,42 @@ use MFC\Bundle\RatingsBundle\Form\InstructorRatingType;
 class RateController extends Controller
 {
 	/**
-	 * @Route("/{slug}/1", name="page_maplet_1")
-	 * @Method("GET|POST")
-	 * @Template("MFCRatingsBundle:Rate:gateway.html.twig")
-	 */
-	public function studentInstructorAction(Maplet $maplet, Request $request)
-	{
-		// $person = new Person();
-
-		// $form = $this->createStudentInstructorForm($person, $maplet);
-
-		// if ($request->getMethod() == "POST") {
-		// 	$form->handleRequest($request);
-
-		// 	if ($form->isValid()) {
-		// 		$role = $person->getRole();
-
-		// 		if ($role == "student") {
-		// 			return $this->redirect($this->generateUrl('page_maplet_2', array('role' => 'student', 'slug' => $maplet->getSlug())));
-		// 		} else {
-		// 			return $this->redirect($this->generateUrl('page_maplet_2', array('role' => 'instructor', 'slug' => $maplet->getSlug())));
-		// 		}
-		// 	}
-		// }
-
-		// $form = $form->createView();
-
-		// return compact( 'form', 'maplet' );
-		
-		if (null == $request->cookies->get('MFC_ROLE'))
-		{
-			$backtrack = "page_maplet_2";
-			return compact('maplet', 'backtrack');
-		}
-
-		$slug = $maplet->getSlug();
-		return $this->redirect($this->generateUrl('page_maplet_3', compact('slug')));
-	}
-
-	/**
-	 * @Route("/{slug}/{role}/2", name="page_maplet_2")
-	 * @Method("GET")
-	 * @Template("MFCRatingsBundle:Rate:legal.html.twig")
-	 */
-	public function legalAction(Maplet $maplet, $role)
-	{
-		if ($role != "student" and $role != "instructor") {
-			return $this->redirect($this->generateUrl('page_index'));
-		}
-		return compact('maplet', 'role');
-	}
-
-	/**
-	 * @Route("/{slug}", name="page_maplet_3")
+	 * @Route("/{version}/{slug}", name="page_maplet_3")
 	 * @Method("GET")
 	 */
-	public function finalAction(Maplet $maplet, Request $request)
+	public function finalAction(Maplet $maplet, Request $request, $version)
 	{
 		if (null == $request->cookies->get('MFC_ROLE'))
 		{
-			return $this->render('MFCRatingsBundle:Rate:gateway.html.twig', array('maplet' => $maplet,'backtrack' => 'page_maplet_1', 'slug' => $maplet->getSlug()));
+			return $this->render('MFCRatingsBundle:Rate:gateway.html.twig', array('maplet' => $maplet,'backtrack' => 'page_maplet_1', 'slug' => $maplet->getSlug(), 'version' => $version));
 		}
 
 		$role = $request->cookies->get("MFC_ROLE");
 
 		if ($role != "student" and $role != "instructor") {
 			return $this->redirect($this->generateUrl('page_index'));
-		}	
+		}
+
 		if ($role == "student") {
 			$studentRating = new StudentRating();
 			$studentRating->setMaplet($maplet);
 			$form = $this->createStudentRatingForm($studentRating)->createView();
 
-			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
+			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form', 'version'));
 		} else {
 			$instructorRating = new InstructorRating();
 			$instructorRating->setMaplet($maplet);
 			$form = $this->createInstructorRatingForm($instructorRating)->createView();
 
-			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form'));
+			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form', 'version'));
 		}
 	}
 
 	/**
-	 * @Route("/{slug}/error", name="maplet_final_submit_student")
+	 * @Route("/{version}/{slug}/error", name="maplet_final_submit_student")
 	 * @Method("POST")
 	 */
-	public function mapletStudentSubmitAction(Maplet $maplet, Request $request)
+	public function mapletStudentSubmitAction(Maplet $maplet, Request $request, $version)
 	{
 		$studentRating = new StudentRating();
 		$studentRating->setMaplet($maplet);
@@ -117,6 +66,8 @@ class RateController extends Controller
 
 		if ($form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
+
+                        $studentRating->setVersion($version);
 
 			$em->persist($studentRating);
 			$em->flush();
@@ -145,6 +96,8 @@ class RateController extends Controller
 
 		if ($form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
+
+                        $instructorRating->setVersion($version);
 
 			$em->persist($instructorRating);
 			$em->flush();

@@ -48,12 +48,12 @@ Rating Maplets
 	<div class="row">
 		<div class="col-sm-6">
 			{% if slug is defined %}
-			<a href="{{ path('set_role_cookie_slug', {'role': 'student', 'backtrack': backtrack, 'slug': slug }) }}" class="link-block student">
+			<a href="{{ path('set_role_cookie_slug', {'role': 'student', 'backtrack': backtrack, 'slug': slug, 'version': version }) }}" class="link-block student">
 			{% else %}
 			{% if maplet is defined %}
-			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'student'}) }}" class="link-block student">
+			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'student', 'version': version}) }}" class="link-block student">
 			{% else %}
-			<a href="{{ path('set_role_cookie', {'role': 'student', 'backtrack': backtrack }) }}" class="link-block student">
+			<a href="{{ path('set_role_cookie', {'role': 'student', 'backtrack': backtrack, 'version': version }) }}" class="link-block student">
 			{% endif %}
 			{% endif %}
 				<div class="panel panel-default">
@@ -66,12 +66,12 @@ Rating Maplets
 		</div>
 		<div class="col-sm-6">
 			{% if slug is defined %}
-			<a href="{{ path('set_role_cookie_slug', {'role': 'instructor', 'backtrack': backtrack, 'slug': slug }) }}" class="link-block instructor">
+			<a href="{{ path('set_role_cookie_slug', {'role': 'instructor', 'backtrack': backtrack, 'slug': slug, 'version': version }) }}" class="link-block instructor">
 			{% else %}
 			{% if maplet is defined %}
-			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'instructor'}) }}" class="link-block instructor">
+			<a href="{{ path('page_maplet_3', {'slug': maplet.slug, 'role': 'instructor', 'version': version}) }}" class="link-block instructor">
 			{% else %}
-			<a href="{{ path('set_role_cookie', {'role': 'instructor', 'backtrack': backtrack }) }}" class="link-block instructor">
+			<a href="{{ path('set_role_cookie', {'role': 'instructor', 'backtrack': backtrack, 'version': version }) }}" class="link-block instructor">
 			{% endif %}
 			{% endif %}
 				<div class="panel panel-default">

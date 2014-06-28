@@ -19,23 +19,15 @@ use MFC\Bundle\RatingsBundle\Form\PersonType;
 class PageController extends Controller
 {
 	/**
-	 * @Route("/", name="page_index")
+	 * @Route("/{version}", name="page_index")
 	 * @Method("GET")
 	 * @Template
 	 */
-	public function indexAction(Request $request)
+	public function indexAction(Request $request, $version)
 	{
-		// setcookie('foo', 'bar', time() + (10 * 365 * 24 * 60 * 60));
-		// if (null !== $request->cookies->get('foo')) {
-		// 	echo "Hi!";
-		// } else {
-		// 	echo "Bye!";
-		// }
-		// exit();
-
 		if (null == $request->cookies->get('MFC_ROLE'))
 		{
-			return $this->render('MFCRatingsBundle:Rate:gateway.html.twig', array('backtrack' => 'page_index'));
+			return $this->render('MFCRatingsBundle:Rate:gateway.html.twig', array('backtrack' => 'page_index', 'version' => $version));
 		}
 
 		$em = $this->getDoctrine()->getManager();
@@ -46,34 +38,34 @@ class PageController extends Controller
 	}
 
 	/**
-	 * @Route("/set_cookie/{role}/{backtrack}", name="set_role_cookie")
+	 * @Route("/set_cookie/{role}/{backtrack}/{version}", name="set_role_cookie")
 	 * @Method("GET")
 	 */
 	public function setCookieForRole($role, $backtrack)
 	{
 		setcookie('MFC_ROLE', $role, time() + (10 * 365 * 24 * 60 * 60), '/');
-		return $this->redirect($this->generateUrl($backtrack));
+		return $this->redirect($this->generateUrl($backtrack, compact('version')));
 	}
 
 	/**
-	 * @Route("/set_cookie/{role}/{backtrack}/{slug}", name="set_role_cookie_slug")
+	 * @Route("/set_cookie/{role}/{backtrack}/{slug}/{version}", name="set_role_cookie_slug")
 	 * @Method("GET")
 	 */
 	public function setCookieForRoleSlug($role, $backtrack, $slug)
 	{
 		setcookie('MFC_ROLE', $role, time() + (10 * 365 * 24 * 60 * 60), '/');
-		return $this->redirect($this->generateUrl($backtrack, compact('slug')));
+		return $this->redirect($this->generateUrl($backtrack, compact('slug', 'version')));
 	}
 
 	/**
-	 * @Route("/gateway", name="page_gateway")
+	 * @Route("/gateway/{version}", name="page_gateway")
 	 * @Method("GET")
 	 * @Template("MFCRatingsBundle:Rate:gateway.html.twig")
 	 */
-	public function loadGateway()
+	public function loadGateway($version)
 	{
 		$backtrack = "page_index";
-		return compact('backtrack');
+		return compact('backtrack', 'version');
 	}
 
 	/**
