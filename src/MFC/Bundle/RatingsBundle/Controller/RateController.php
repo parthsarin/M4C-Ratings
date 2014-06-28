@@ -42,13 +42,13 @@ class RateController extends Controller
 			$studentRating->setMaplet($maplet);
 			$form = $this->createStudentRatingForm($studentRating, $version)->createView();
 
-			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form'));
+			return $this->render('MFCRatingsBundle:Rate:student.html.twig', compact('maplet', 'form', 'version'));
 		} else {
 			$instructorRating = new InstructorRating();
 			$instructorRating->setMaplet($maplet);
 			$form = $this->createInstructorRatingForm($instructorRating, $version)->createView();
 
-			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form'));
+			return $this->render('MFCRatingsBundle:Rate:instructor.html.twig', compact('maplet', 'form', 'version'));
 		}
 	}
 
@@ -82,11 +82,11 @@ class RateController extends Controller
 	}
 
 	/**
-	 * @Route("/{slug}/finish/error", name="maplet_final_submit_instructor")
+	 * @Route("/{version}/{slug}/finish/error", name="maplet_final_submit_instructor")
 	 * @Method("POST")
 	 * @Template("MFCRatingsBundle:Rate:instructor.html.twig")
 	 */
-	public function mapletInstructorSubmitAction(Maplet $maplet, Request $request)
+	public function mapletInstructorSubmitAction(Maplet $maplet, Request $request, $version)
 	{
 		$instructorRating = new InstructorRating();
 		$instructorRating->setMaplet($maplet);

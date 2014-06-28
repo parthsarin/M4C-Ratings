@@ -19,7 +19,7 @@
 		{% for group in maplets|batch(3, "") %}
 		    <tr>
 		    	{% for maplet in group %}
-		    	    <td><a href="{{ path('page_maplet_1', { 'slug': maplet.slug }) }}">{{ maplet.name }}</a></td>
+		    	    <td><a href="{{ path('page_maplet_1', { 'slug': maplet.slug, 'version': version }) }}">{{ maplet.name }}</a></td>
 		    	{% endfor %}
 		    </tr>
 		{% endfor %}

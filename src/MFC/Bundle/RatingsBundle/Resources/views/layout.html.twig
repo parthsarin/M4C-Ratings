@@ -29,7 +29,7 @@
 {% block header %}
 {{ parent() }}
 <div class="MFCRoleChange">
-    <span><a href="{{ path('page_gateway') }}">Not
+    <span><a href="{{ path('page_gateway', {'version': version}) }}">Not
     {% if role == "instructor" %}
             an instructor?
     {% else %}

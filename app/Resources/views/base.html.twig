@@ -11,14 +11,16 @@
     {% block js %}
     <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="//localhost:35729/livereload.js"></script>
+    {% if app.environment == "dev" %}
+        <script src="//localhost:35729/livereload.js"></script>
+    {% endif %}
     {% endblock %}
 </head>
 <body>
     {% block nav %}
     <div class="nav">
         <div class="header">
-            <h1><a href="{{ path('page_index') }}">Maplets for Calculus</a></h1>
+            <h1><a href="{{ path('page_index', {'version': version}) }}">Maplets for Calculus</a></h1>
         </div>
         <div class="container">
             {% block mapletName %}{% endblock %}
